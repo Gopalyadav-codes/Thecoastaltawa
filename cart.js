@@ -288,13 +288,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div id="cart-items-container" class="flex flex-col gap-4"></div>
 
                 <!-- Empty State -->
-                <div id="cart-empty-state" class="hidden flex-col items-center justify-center text-center py-20 gap-4">
-                    <span class="material-symbols-outlined text-primary/30 text-[72px]">restaurant</span>
-                    <div>
-                        <h4 class="font-headline-sm text-white-pure">Your Imperial Tray is Empty</h4>
-                        <p class="text-[13px] text-on-surface-variant max-w-[280px] mt-2 leading-relaxed">Indulge in our exquisite selection of coastal Malvani curries and Awadhi royal delights.</p>
+                <div id="cart-empty-state" class="hidden flex-col items-center justify-center text-center py-20" style="gap: 20px;">
+                    <span class="material-symbols-outlined text-primary/30 text-[72px]" style="margin-bottom: 8px; display: block;">restaurant</span>
+                    <div style="padding: 0 16px;">
+                        <h4 class="font-headline-sm text-white-pure" style="line-height: 1.4; display: block; font-size: 20px; letter-spacing: 0.05em;">Your Imperial Tray is Empty</h4>
+                        <p class="text-[13px] text-on-surface-variant max-w-[320px] mx-auto" style="line-height: 1.8; display: block; margin-top: 12px; opacity: 0.85;">Indulge in our exquisite selection of coastal Malvani curries and Awadhi royal delights.</p>
                     </div>
-                    <a href="menu.html" class="mt-4 px-8 py-3.5 bg-primary text-on-primary font-label-caps text-[10px] tracking-widest uppercase rounded-full gold-glow-hover transition-all font-bold" onclick="toggleCart()">Explore Menu</a>
+                    <a href="menu.html" class="px-8 py-3.5 bg-primary text-on-primary font-label-caps text-[10px] tracking-widest uppercase rounded-full gold-glow-hover transition-all font-bold" style="display: inline-block; margin-top: 16px;" onclick="toggleCart()">Explore Menu</a>
                 </div>
             </div>
 
