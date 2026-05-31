@@ -1027,3 +1027,21 @@ function setupLogoReplay() {
         }
     });
 }
+
+// Expose public functions to global window scope to allow inline HTML handlers to invoke them
+window.toggleCart = toggleCart;
+window.closeCart = closeCart;
+window.addToTawaCart = addToTawaCart;
+window.adjustItemQty = adjustItemQty;
+window.removeFromCart = removeFromCart;
+window.clearCart = clearCart;
+window.applyPromoCode = applyPromoCode;
+window.showCheckoutForm = showCheckoutForm;
+window.restoreCartView = restoreCartView;
+window.toggleCheckoutFields = toggleCheckoutFields;
+window.handleCheckoutSubmit = handleCheckoutSubmit;
+window.completeTawaOrder = completeTawaOrder;
+window.hideTawaVideo = hideTawaVideo;
+window.toggleTawaVideoVolume = toggleTawaVideoVolume;
+window.playTawaVideo = playTawaVideo;
+
