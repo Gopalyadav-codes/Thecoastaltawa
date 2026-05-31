@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>The Coastal Tawa | Royal Indian Gastronomy</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Indulge in handcrafted coastal Indian masterpieces and Awadhi fine-dining cuisine. Experience royal gastronomy at Thane West's premier boutique culinary venue." />
+    <meta name="keywords" content="The Coastal Tawa, Fine Dining Thane, Malvani Cuisine, Awadhi Gastronomy, Luxury Restaurant Thane, Coastal Indian food" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    
+    <!-- Tailwind Config Verbatim with Unified Theme -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#D4AF37", // Royal Gold
+                        "secondary": "#F07178", // Coastal Coral
+                        "background": "#1F0507", // Deep Charcoal Maroon
+                        "surface": "#2B0E11", // Card Surface
+                        "on-surface": "#F2E8DF", // Ivory White
+                        "on-surface-variant": "#A58A8A", // Muted Dusty Rose
+                        "text-gold-subtle": "#D4AF37",
+                        "maroon-dark": "#2B0E11",
+                        "white-pure": "#FFFFFF",
+                        "surface-container": "rgba(212, 175, 55, 0.05)",
+                        "surface-container-lowest": "#120203"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "24px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "section-gap": "120px",
+                        "stack-lg": "48px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Manrope"],
+                        "headline-md": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Manrope"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "label-caps": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+
+    <style>
+        .glass-header {
+            background-color: rgba(31, 5, 7, 0.85);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+        }
+        .glass-card {
+            background-color: rgba(43, 14, 17, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 24px;
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+        .border-gold-faint {
+            border-color: rgba(212, 175, 55, 0.2);
+        }
+        .hover-lift {
+            transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            border-color: rgba(212, 175, 55, 0.4);
+            background-color: rgba(43, 14, 17, 0.6);
+        }
+        .gold-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-bottom-color: #D4AF37 !important;
+            box-shadow: 0 4px 12px -2px rgba(212, 175, 55, 0.2);
+        }
+
+        @keyframes globe-spin-float {
+            0% { transform: translateY(0px) rotateY(0deg); }
+            25% { transform: translateY(-10px) rotateY(90deg); }
+            50% { transform: translateY(0px) rotateY(180deg); }
+            75% { transform: translateY(10px) rotateY(270deg); }
+            100% { transform: translateY(0px) rotateY(360deg); }
+        }
+
+        .logo-perspective-container {
+            perspective: 1200px;
+        }
+
+        .logo-animation {
+            animation: globe-spin-float 15s linear infinite;
+            transform-style: preserve-3d;
+        }
+
+        /* Page Fade-In */
+        body {
+            opacity: 0;
+            animation: pageFadeIn 0.5s ease-out forwards;
+            background-color: #1F0507;
+        }
+        @keyframes pageFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Luxury Text Reveal */
+        .reveal-container {
+            overflow: hidden;
+            display: block;
+        }
+        .reveal-text {
+            display: block;
+            transform: translate3d(0, 100%, 0);
+            animation: textReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes textReveal {
+            from { transform: translate3d(0, 100%, 0); }
+            to { transform: translate3d(0, 0, 0); }
+        }
+
+        .animate-fade-up {
+            opacity: 0;
+            transform: translate3d(0, 30px, 0);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .animate-fade-up.visible {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+
+        /* Gold Shimmer Button Effect */
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(212, 175, 55, 0.2),
+                rgba(255, 255, 240, 0.4),
+                rgba(212, 175, 55, 0.2),
+                transparent
+            );
+            transition: none;
+        }
+        .shimmer-btn:hover::after {
+            left: 150%;
+            transition: left 0.8s ease-in-out;
+        }
+
+        .parallax-bg {
+            background-attachment: scroll;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            transition: background-position 0.1s linear;
+        }
+
+        /* --- PRESERVE BRANDING & OVERRIDE TYPOGRAPHY GOLD TO PREMIUM WHITE --- */
+        *:not(.material-symbols-outlined):not(a):not(button).text-primary,
+        *:not(.material-symbols-outlined):not(a):not(button).text-royal-gold,
+        *:not(.material-symbols-outlined):not(a):not(button).text-text-gold-subtle {
+            color: #F8F8F8 !important;
+        }
+
+        /* --- INTERACTIVE TEXT COLOR STATES --- */
+        .interactive-text {
+            color: #F8F8F8 !important;
+            transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        .interactive-text:hover {
+            color: #D4AF37 !important;
+        }
+        .interactive-text:active {
+            color: #C9A227 !important;
+        }
+        .interactive-text.selected {
+            color: #D4AF37 !important;
+        }
+    </style>
+</head>
+<body class="text-on-surface selection:bg-primary/30 selection:text-white-pure">
+    <!-- TopNavBar -->
+    <header class="fixed top-0 w-full z-50 px-margin-mobile md:px-margin-desktop py-4 glass-header border-b border-primary/20">
+        <div class="flex items-center w-full max-w-container-max mx-auto justify-between">
+            <a href="index.html" class="font-headline-md text-[20px] md:text-headline-sm interactive-text uppercase tracking-[0.2em] font-bold shrink-0">
+                The Coastal Tawa
+            </a>
+            <nav class="hidden md:flex flex-1 justify-center gap-stack-lg items-center">
+                <a class="font-label-caps text-label-caps interactive-text selected border-b border-primary pb-1 uppercase tracking-widest" href="index.html">Home</a>
+                <a class="font-label-caps text-label-caps interactive-text uppercase tracking-widest" href="menu.html">Menu</a>
+                <a class="font-label-caps text-label-caps interactive-text uppercase tracking-widest" href="reservations.html">Reservations</a>
+                <a class="font-label-caps text-label-caps interactive-text uppercase tracking-widest" href="contact.html">Contact</a>
+            </nav>
+            <div class="flex items-center gap-4 shrink-0">
+                <button onclick="toggleCart()" class="material-symbols-outlined text-primary hover:scale-110 transition-transform p-2 rounded-full relative">
+                    shopping_bag
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-primary text-background text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold">0</span>
+                </button>
+                <button onclick="toggleMobileNav()" class="md:hidden material-symbols-outlined text-primary p-2">menu</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Overlay -->
+    <div id="mobile-nav" class="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl transition-all duration-300 opacity-0 pointer-events-none flex flex-col justify-center items-center gap-8 md:hidden">
+        <button onclick="toggleMobileNav()" class="absolute top-6 right-6 material-symbols-outlined text-primary text-3xl">close</button>
+        <a href="index.html" class="font-headline-md text-2xl interactive-text selected uppercase tracking-widest" onclick="toggleMobileNav()">Home</a>
+        <a href="menu.html" class="font-headline-md text-2xl interactive-text uppercase tracking-widest" onclick="toggleMobileNav()">Menu</a>
+        <a href="reservations.html" class="font-headline-md text-2xl interactive-text uppercase tracking-widest" onclick="toggleMobileNav()">Reservations</a>
+        <a href="contact.html" class="font-headline-md text-2xl interactive-text uppercase tracking-widest" onclick="toggleMobileNav()">Contact</a>
+    </div>
+
+    <main>
+        <!-- Redesigned Hero Section -->
+        <section class="min-h-screen relative flex items-center pt-[100px] overflow-hidden parallax-bg" id="hero" style='background-image: linear-gradient(rgba(31, 5, 7, 0.75), rgb(31, 5, 7)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBA0FqUXNFPnxlNI63GiohEONrDy5DWLd9gdtpddCFcvqtSAHi_-zFMCZmHQ471B7YpmnjK8-k_f-wId50YiKN5C_eqYDnQmtVpKot0sRcZz6CE2HlahYPrCWrGadCC3gc_3cimQyDc4FZuuQj1EvVcaugwMZNXyr3sc_gvAnbYZ12SX3kmnSYYEYxsQeAWMbElPdH78AWZYw69yjI-Ylnh1Yo60q7ogyBuEg9XRd850tC9g62Ps4gbdg3Q8AzowIDnT8hZQc4yMWwg");'>
+            <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop w-full relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-stack-lg items-center">
+                    <!-- Left Content -->
+                    <div class="space-y-stack-md text-left">
+                        <p class="font-label-caps text-label-caps text-primary uppercase tracking-[0.4em] opacity-0 animate-[pageFadeIn_1s_0.2s_forwards]">Experience Excellence</p>
+                        <h1 class="font-display-lg text-[42px] md:text-[68px] text-white-pure leading-[1.1] transition-transform duration-100 ease-out" id="hero-heading">
+                            <span class="reveal-container"><span class="reveal-text" style="animation-delay: 0.3s;">Where Heritage Meets</span></span>
+                            <span class="reveal-container"><span class="reveal-text text-primary" style="animation-delay: 0.5s;">Extraordinary Flavour</span></span>
+                        </h1>
+                        <p class="font-body-md text-body-lg text-on-surface-variant max-w-xl leading-relaxed opacity-0 animate-[pageFadeIn_1s_0.8s_forwards]">
+                            Indulge in handcrafted culinary masterpieces inspired by tradition and elevated by modern culinary alchemists. A sanctuary of taste in the heart of Thane West.
+                        </p>
+                        <div class="flex flex-wrap gap-stack-md pt-4 opacity-0 animate-[pageFadeIn_1s_1s_forwards]">
+                            <a class="shimmer-btn px-10 py-5 bg-primary text-background font-label-caps text-label-caps rounded-full hover:scale-105 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-300 uppercase tracking-widest font-bold text-center" href="reservations.html">
+                                Reserve Your Table
+                            </a>
+                            <a class="shimmer-btn px-10 py-5 border border-primary interactive-text font-label-caps text-label-caps rounded-full hover:bg-primary/10 hover:scale-105 transition-all duration-300 uppercase tracking-widest text-center" href="menu.html">
+                                Explore Our Menu
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Right Content: Optimized Logo -->
+                    <div class="relative flex justify-center lg:justify-end mt-8 lg:mt-0">
+                        <div class="logo-perspective-container opacity-0 animate-[pageFadeIn_1s_1.2s_forwards]">
+                            <div class="relative group">
+                                <!-- Luxury Glow/Accent behind logo -->
+                                <div class="absolute -inset-10 bg-primary/10 blur-[60px] rounded-full group-hover:bg-primary/20 transition-all duration-1000"></div>
+                                <div class="logo-animation">
+                                    <img alt="The Coastal Tawa Logo" class="relative z-10 w-[300px] md:w-[380px] h-auto object-contain drop-shadow-[0_0_45px_rgba(212,175,55,0.25)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOaWFRCb-B_Ew6X8lBh1wT0xueb0UGx99Ul9-QBEJEpm1unyQE1Wa0cq6r7AMgznGnuMaO_4J6MyeCQHCnaNK24izRDld4gcQn1cdHKQzY38j84VqXK6I9pExag6yuzPZ4OIQeJoRsbyo0n3tk1rgGh1JiAZTYfD7W-mf-bwdG23f431of_BclJPcfDpUi8p3UEVoa3YV5B1i9oZCuQHp5cOYSPkC2OJorZ4RygaIcqEONBJAKFMOTtXhpttJZA4PgtCEinh8sNZz7"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Highlight Section -->
+        <section class="py-section-gap bg-surface-container-lowest relative overflow-hidden" id="menu">
+            <div class="absolute top-0 left-0 w-full h-px gold-divider"></div>
+            <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+                <div class="text-center mb-stack-lg animate-fade-up">
+                    <p class="font-label-caps text-label-caps text-primary mb-stack-sm uppercase tracking-[0.4em]">The Sovereign Taste Ledger</p>
+                    <h2 class="font-display-lg text-display-lg-mobile md:text-headline-md text-white-pure uppercase tracking-widest">Sovereign Gastronomy</h2>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+                    <!-- Shahi Tier -->
+                    <div class="glass-card p-8 md:p-stack-lg flex flex-col hover-lift animate-fade-up" style="transition-delay: 100ms;">
+                        <p class="font-label-caps text-[10px] text-primary mb-stack-sm tracking-[0.2em]">SHAHI TIER (₹380 — ₹600)</p>
+                        <h3 class="font-headline-sm text-headline-sm text-white-pure mb-stack-md">Shahi Selection</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-stack-lg">A curated compilation of light delicacies, authentic starters, and classic Awadhi main courses. Perfect for exploring historical culinary paths.</p>
+                        <div class="space-y-stack-md mt-auto">
+                            <div class="flex justify-between border-b border-white-pure/5 pb-stack-sm group cursor-pointer" onclick="window.location.href='menu.html'">
+                                <span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Dahi Ke Kabab</span>
+                                <span class="font-body-md text-primary">₹380</span>
+                            </div>
+                            <div class="flex justify-between border-b border-white-pure/5 pb-stack-sm group cursor-pointer" onclick="window.location.href='menu.html'">
+                                <span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Truffle Lotus Stem Crisps</span>
+                                <span class="font-body-md text-primary">₹420</span>
+                            </div>
+                            <div class="flex justify-between border-b border-white-pure/5 pb-stack-sm group cursor-pointer" onclick="window.location.href='menu.html'">
+                                <span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Shahi Paneer Pasanda</span>
+                                <span class="font-body-md text-primary">₹560</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Elite Tier -->
+                    <div class="glass-card p-8 md:p-stack-lg flex flex-col hover-lift animate-fade-up" style="transition-delay: 200ms;">
+                        <p class="font-label-caps text-[10px] text-primary mb-stack-sm tracking-[0.2em]">ELITE TIER (₹700 AND ABOVE)</p>
+                        <h3 class="font-headline-sm text-headline-sm text-white-pure mb-stack-md">Royale Banquet</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-stack-lg">The crown jewel banquet of our culinary alchemists. An elite collection of rare seafood, heavy saffron meat curries, and luxury biryanis.</p>
+                        <div class="space-y-stack-md mt-auto">
+                            <div class="flex justify-between border-b border-white-pure/5 pb-stack-sm group cursor-pointer" onclick="window.location.href='menu.html'">
+                                <span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Imperial Goat Dum Biryani</span>
+                                <span class="font-body-md text-primary">₹880</span>
+                            </div>
+                            <div class="flex justify-between border-b border-white-pure/5 pb-stack-sm group cursor-pointer" onclick="window.location.href='menu.html'">
+                                <span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Malabar Lobster Moilee</span>
+                                <span class="font-body-md text-primary">₹890</span>
+                            </div>
+                            <div class="flex justify-between border-b border-white-pure/5 pb-stack-sm group cursor-pointer" onclick="window.location.href='menu.html'">
+                                <span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Seekh Kebab Awadhi</span>
+                                <span class="font-body-md text-primary">₹720</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-stack-lg text-center animate-fade-up" style="transition-delay: 300ms;">
+                    <a href="menu.html" class="inline-block px-12 py-4 bg-primary text-background font-label-caps text-label-caps uppercase tracking-widest hover:brightness-110 transition-all font-bold rounded-full shimmer-btn">View Grand Menu</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Home Reservations Promo Section -->
+        <section class="py-section-gap relative overflow-hidden bg-surface animate-fade-up" id="home-reservations">
+            <div class="absolute inset-0 z-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/pinstriped-suit.png')]"></div>
+            <div class="max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-center">
+                <p class="font-label-caps text-label-caps text-primary mb-stack-sm uppercase tracking-[0.4em]">Experience the Opulence</p>
+                <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-white-pure uppercase mb-6">Imperial Table Chamber</h2>
+                <p class="max-w-xl mx-auto font-body-md text-on-surface-variant leading-relaxed mb-8">
+                    Let us orchestrate an unforgettable, sensory-rich sensory journey for your evening. Secure an exclusive table chamber in our main hall, art gallery, or open-air terrace.
+                </p>
+                <a href="reservations.html" class="inline-block px-12 py-5 bg-primary text-background font-label-caps text-label-caps uppercase tracking-[0.3em] font-bold shadow-lg hover:brightness-110 transition-all duration-300 rounded-full shimmer-btn">
+                    Secure Your Chamber Table
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-20 px-margin-mobile md:px-margin-desktop bg-surface-container-lowest relative border-t border-primary/25">
+        <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-3 gap-12" id="footer">
+            <div class="space-y-stack-md">
+                <div class="font-headline-sm text-headline-sm text-white-pure uppercase tracking-widest mb-stack-sm">The Coastal Tawa</div>
+                <p class="font-body-md text-body-md text-on-surface-variant max-w-xs leading-relaxed">
+                    An exquisite passage to coastal heritage and modern alchemical Indian cuisine. Savor ancient culinary secrets blended with luxurious fine-dining hospitality.
+                </p>
+                <div class="flex gap-4">
+                    <a class="w-10 h-10 border border-gold-faint flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-all duration-300 rounded-full" href="#">
+                        <span class="material-symbols-outlined text-[20px]">public</span>
+                    </a>
+                    <a class="w-10 h-10 border border-gold-faint flex items-center justify-center text-primary hover:bg-primary hover:text-background transition-all duration-300 rounded-full" href="#">
+                        <span class="material-symbols-outlined text-[20px]">alternate_email</span>
+                    </a>
+                </div>
+            </div>
+            <div class="space-y-stack-md">
+                <h5 class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Dining Hours</h5>
+                <ul class="space-y-stack-sm font-body-md text-on-surface-variant">
+                    <li>Lunch: 12:00 PM – 3:30 PM</li>
+                    <li>Dinner: 7:00 PM – 11:30 PM</li>
+                    <li>Open daily for royal dining.</li>
+                </ul>
+            </div>
+            <div class="space-y-stack-md">
+                <h5 class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Palace Address</h5>
+                <ul class="space-y-stack-sm font-body-md text-on-surface-variant">
+                    <li>Ground, Empire Ways Co Operative Housing Society</li>
+                    <li>Junction, Eastern Express Hwy, Near Nitin Company</li>
+                    <li>Sambhaji Nagar, Thane West, Thane, MH 400606</li>
+                    <li>Phone: +91 22 5555 7777</li>
+                    <li>Email: reservations@coastaltawa.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-container-max mx-auto mt-16 pt-8 border-t border-white-pure/5 flex flex-col md:flex-row justify-between items-center opacity-60">
+            <p class="font-body-md text-[12px] text-on-surface-variant text-center md:text-left">
+                © 2026 The Coastal Tawa Restaurant. All Rights Reserved. Crafted for Haute Indian Gastronomy.
+            </p>
+            <div class="flex gap-8 mt-4 md:mt-0">
+                <a class="font-label-caps text-[10px] interactive-text uppercase" href="#">Privacy Policy</a>
+                <a class="font-label-caps text-[10px] interactive-text uppercase" href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Global Cart State script -->
+    <script src="cart.js"></script>
+
+    <!-- Interactivity scripts -->
+    <script>
+        // Mobile Navigation Toggle
+        function toggleMobileNav() {
+            const nav = document.getElementById('mobile-nav');
+            if (nav.classList.contains('opacity-0')) {
+                nav.classList.remove('opacity-0', 'pointer-events-none');
+                nav.classList.add('opacity-100', 'pointer-events-auto');
+            } else {
+                nav.classList.add('opacity-0', 'pointer-events-none');
+                nav.classList.remove('opacity-100', 'pointer-events-auto');
+            }
+        }
+
+        // Parallax and Mouse Movement
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            // Subtle heading transform
+            const heroText = document.getElementById('hero-heading'); 
+            if(heroText) {
+                heroText.style.transform = `translate3d(${x * 15}px, ${y * 15}px, 0)`;
+            }
+
+            // Parallax movement for hero background
+            const hero = document.getElementById('hero');
+            if (hero) {
+                // Background moves slightly slower than mouse
+                hero.style.backgroundPosition = `${50 + (x - 0.5) * 2}% ${50 + (y - 0.5) * 2}%`;
+            }
+        });
+
+        // Scroll Parallax Effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.getElementById('hero');
+            if (hero && scrolled < window.innerHeight) {
+                // Move background at 0.3x scroll speed
+                hero.style.backgroundPositionY = `${scrolled * 0.3}px`;
+            }
+        });
+
+        // Intersection Observer for Entrance Animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Stop observing once visible
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-fade-up').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Menu | The Coastal Tawa</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Explore the majestic culinary ledger of The Coastal Tawa. Featuring Malvani seafood, Awadhi clay-oven kebabs, artisan biryanis, and royal desserts." />
+    <meta name="keywords" content="The Coastal Tawa Menu, Indian Gastronomy, Tandoori starters, Malvani seafood curry, Biryani Thane, Thane fine dining" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Manrope:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#D4AF37", // Royal Gold
+                        "secondary": "#F07178", // Coastal Coral
+                        "background": "#1F0507", // Deep Charcoal Maroon
+                        "surface": "#2B0E11", // Card Surface
+                        "on-surface": "#F2E8DF", // Ivory White
+                        "on-surface-variant": "#A58A8A", // Muted Dusty Rose
+                        "text-gold-subtle": "#D4AF37",
+                        "charcoal-surface": "#120203",
+                        "surface-container": "rgba(212, 175, 55, 0.05)",
+                        "surface-container-high": "rgba(212, 175, 55, 0.12)",
+                        "surface-container-low": "rgba(212, 175, 55, 0.03)",
+                        "surface-container-lowest": "#120203"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "9999px",
+                        "lg": "9999px",
+                        "xl": "9999px",
+                        "full": "9999px",
+                        "card": "2rem"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "section-gap": "120px",
+                        "stack-lg": "48px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "stack-md": "16px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Manrope", "sans-serif"],
+                        "headline-md": ["Playfair Display", "serif"],
+                        "display-lg": ["Playfair Display", "serif"],
+                        "body-md": ["Manrope", "sans-serif"],
+                        "display-lg-mobile": ["Playfair Display", "serif"],
+                        "headline-sm": ["Playfair Display", "serif"],
+                        "label-caps": ["Manrope", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .backdrop-blur-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .glass-card {
+            background: rgba(43, 14, 17, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+        .glass-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            background: rgba(43, 14, 17, 0.6);
+            transform: translateY(-8px);
+        }
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.25) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(45deg);
+            transition: transform 0.6s ease-in-out;
+            pointer-events: none;
+        }
+        .shimmer-btn:hover::after {
+            transform: rotate(45deg) translate(100%, 100%);
+        }
+        .category-chip.active {
+            background-color: #D4AF37 !important;
+            color: #1F0507 !important;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+        }
+        .category-chip:not(.active) {
+            color: #F8F8F8 !important;
+            transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        .category-chip:not(.active):hover {
+            color: #D4AF37 !important;
+        }
+        .category-chip:not(.active):active {
+            color: #C9A227 !important;
+        }
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .reveal-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .ornamental-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+            position: relative;
+            margin: 6rem 0;
+        }
+        .ornamental-divider::after {
+            content: '◆';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: #D4AF37;
+            background: #1F0507;
+            padding: 0 1rem;
+            font-size: 12px;
+        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* --- PRESERVE BRANDING & OVERRIDE TYPOGRAPHY GOLD TO PREMIUM WHITE --- */
+        *:not(.material-symbols-outlined):not(a):not(button).text-primary,
+        *:not(.material-symbols-outlined):not(a):not(button).text-royal-gold,
+        *:not(.material-symbols-outlined):not(a):not(button).text-text-gold-subtle {
+            color: #F8F8F8 !important;
+        }
+
+        /* --- INTERACTIVE TEXT COLOR STATES --- */
+        .interactive-text {
+            color: #F8F8F8 !important;
+            transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        .interactive-text:hover {
+            color: #D4AF37 !important;
+        }
+        .interactive-text:active {
+            color: #C9A227 !important;
+        }
+        .interactive-text.selected {
+            color: #D4AF37 !important;
+        }
+
+        /* --- UPDATE TEXT BUTTONS TO INTERACTIVE --- */
+        button.text-primary:not(.material-symbols-outlined) {
+            color: #F8F8F8 !important;
+            transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        button.text-primary:not(.material-symbols-outlined):hover {
+            color: #D4AF37 !important;
+        }
+        button.text-primary:not(.material-symbols-outlined):active {
+            color: #C9A227 !important;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+    <!-- Floating Cart Summary Widget -->
+    <div class="fixed bottom-8 right-8 z-[90] flex items-center gap-4 bg-primary text-background px-6 py-4 rounded-full shadow-2xl scale-0 transition-transform duration-300 cursor-pointer hover:scale-105 active:scale-95" id="floating-cart" onclick="toggleCart()">
+        <div class="relative">
+            <span class="material-symbols-outlined text-[28px]" data-icon="shopping_bag">shopping_bag</span>
+            <span class="absolute -top-1 -right-1 bg-surface text-primary px-1.5 py-0.5 rounded-full text-[10px] font-bold" id="floating-cart-count">0</span>
+        </div>
+        <div class="flex flex-col leading-tight">
+            <span class="text-[10px] font-bold uppercase tracking-widest opacity-80">Cart Total</span>
+            <span class="font-headline-sm text-[18px]" id="floating-cart-total">₹0</span>
+        </div>
+    </div>
+
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 bg-background/80 backdrop-blur-nav border-b border-primary/20">
+        <a href="index.html" class="font-display-lg text-[20px] md:text-[24px] interactive-text uppercase tracking-[0.15em] font-bold">
+            The Coastal Tawa
+        </a>
+        <div class="hidden md:flex items-center gap-10">
+            <a class="font-label-caps text-[11px] tracking-widest interactive-text" href="index.html">HOME</a>
+            <a class="font-label-caps text-[11px] tracking-widest interactive-text selected border-b border-primary pb-1" href="menu.html">MENU</a>
+            <a class="font-label-caps text-[11px] tracking-widest interactive-text" href="reservations.html">RESERVATIONS</a>
+            <a class="font-label-caps text-[11px] tracking-widest interactive-text" href="contact.html">CONTACT</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="relative cursor-pointer group p-2" onclick="toggleCart()">
+                <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform" data-icon="shopping_bag">shopping_bag</span>
+                <div class="absolute top-0 right-0 bg-primary text-background px-1.5 py-0.5 rounded-full text-[9px] font-bold cart-count" id="cart-count">0</div>
+            </div>
+            <button onclick="toggleMobileNav()" class="md:hidden material-symbols-outlined text-primary p-2">menu</button>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav Overlay -->
+    <div id="mobile-nav" class="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl transition-all duration-300 opacity-0 pointer-events-none flex flex-col justify-center items-center gap-8 md:hidden">
+        <button onclick="toggleMobileNav()" class="absolute top-6 right-6 material-symbols-outlined text-primary text-3xl">close</button>
+        <a href="index.html" class="font-headline-md text-2xl interactive-text uppercase tracking-widest" onclick="toggleMobileNav()">Home</a>
+        <a href="menu.html" class="font-headline-md text-2xl interactive-text selected uppercase tracking-widest" onclick="toggleMobileNav()">Menu</a>
+        <a href="reservations.html" class="font-headline-md text-2xl interactive-text uppercase tracking-widest" onclick="toggleMobileNav()">Reservations</a>
+        <a href="contact.html" class="font-headline-md text-2xl interactive-text uppercase tracking-widest" onclick="toggleMobileNav()">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative pt-40 pb-10 px-margin-mobile md:px-margin-desktop text-center bg-gradient-to-b from-background to-surface-container-lowest">
+        <div class="z-10 max-w-4xl mx-auto reveal-on-scroll">
+            <p class="font-label-caps text-[12px] text-primary tracking-[0.5em] mb-4 uppercase">Coastal Flavours • Fine Dining • Malvani Specialities</p>
+            <h1 class="font-display-lg text-[48px] md:text-[84px] text-on-surface mb-6 uppercase tracking-tight leading-[1.1]">
+                Our Premium <br/><span class="italic text-primary font-light">Menu</span>
+            </h1>
+            <div class="w-16 h-px bg-primary/40 mx-auto mb-8"></div>
+            <p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto italic">
+                A curated anthology of coastal gastronomy and imperial flavors, meticulously composed to transcend the ordinary.
+            </p>
+        </div>
+    </header>
+
+    <!-- Sticky Menu Navigation & Search -->
+    <div class="sticky top-[72px] z-30 bg-background/95 backdrop-blur-md border-y border-primary/15">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Categories -->
+            <div class="flex gap-4 md:gap-8 items-center py-4 overflow-x-auto scrollbar-hide justify-start md:justify-center">
+                <a class="category-chip active px-6 py-2 rounded-full font-label-caps text-[10px] tracking-widest uppercase border border-primary/20 transition-all" data-target="combos" href="#combos">Combos</a>
+                <a class="category-chip px-6 py-2 rounded-full font-label-caps text-[10px] tracking-widest uppercase border border-primary/20 hover:border-primary text-on-surface-variant transition-all" data-target="soups" href="#soups">Soups</a>
+                <a class="category-chip px-6 py-2 rounded-full font-label-caps text-[10px] tracking-widest uppercase border border-primary/20 hover:border-primary text-on-surface-variant transition-all" data-target="starters" href="#starters">Starters</a>
+                <a class="category-chip px-6 py-2 rounded-full font-label-caps text-[10px] tracking-widest uppercase border border-primary/20 hover:border-primary text-on-surface-variant transition-all" data-target="main-course" href="#main-course">Main Course</a>
+                <a class="category-chip px-6 py-2 rounded-full font-label-caps text-[10px] tracking-widest uppercase border border-primary/20 hover:border-primary text-on-surface-variant transition-all" data-target="breads-rice" href="#breads-rice">Breads &amp; Rice</a>
+            </div>
+            <!-- Premium Search Bar -->
+            <div class="pb-6 max-w-2xl mx-auto px-margin-mobile">
+                <div class="relative group">
+                    <span class="material-symbols-outlined absolute left-6 top-1/2 -translate-y-1/2 text-primary/60 group-focus-within:text-primary transition-colors" data-icon="search">search</span>
+                    <input class="w-full bg-surface border-primary/20 focus:border-primary focus:ring-0 rounded-full py-4 pl-16 pr-6 text-on-surface placeholder:text-on-surface/30 font-body-md transition-all shadow-inner" id="menu-search" placeholder="Search signature dishes..." type="text"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-20">
+        <!-- Combos Section -->
+        <section class="scroll-mt-64 menu-section" id="combos">
+            <div class="text-center mb-16 reveal-on-scroll">
+                <h2 class="font-headline-md text-[40px] text-on-surface uppercase tracking-widest mb-4">Combos</h2>
+                <p class="font-body-md text-on-surface-variant italic">Complete culinary journeys in a single serving</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Featured Combo Item -->
+                <div class="glass-card reveal-on-scroll menu-item" data-name="basmati ke khet se combo 1">
+                    <div class="relative h-64 overflow-hidden">
+                        <img alt="Basmati Ke Khet Se" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYojtpFw4PrvRrsNXvUR74ARJreKVzZx8C4URC3V7jOj_FvEk0K_QThmX516TOabq1No0f3McmR3Ax37zYvz0o5t8kKfcDzwIfsic8XOc9om3Kgs9DkMxd1HR_tU5RqYxTM15r7ROmaFZ_qYaMjZh_kwJHYfWF3K3NGLVXaYMcF0gaR51B3po7GZSlW0tFYLbPV4FEMhnEVr2TOf_QbPKA6KrPrICX6o2Q6Us8o_84cLxx5yr0QubtBoPcFXN_9ZfAvjikBO1ecrxI"/>
+                        <div class="absolute top-4 left-4 bg-primary text-background px-4 py-1.5 rounded-full text-[10px] font-label-caps tracking-widest">CHEF'S SPECIAL</div>
+                    </div>
+                    <div class="p-8 space-y-4">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-headline-sm text-[22px] text-on-surface italic leading-tight">Basmati Ke Khet Se <br/>Combo 1</h3>
+                            <span class="text-primary font-bold text-xl">₹460</span>
+                        </div>
+                        <p class="font-body-md text-on-surface-variant text-[14px] leading-relaxed">
+                            An heirloom recipe of fragrant long-grain basmati served with house-special dal makhani and seasonal vegetable preparation.
+                        </p>
+                        <div class="pt-4 flex items-center justify-between">
+                            <div class="flex items-center gap-4 bg-background/60 rounded-full px-4 py-2 border border-primary/10">
+                                <button class="text-primary hover:scale-125 transition-transform" onclick="updateQty(this, -1)">-</button>
+                                <span class="qty font-bold text-sm min-w-[1.5rem] text-center">1</span>
+                                <button class="text-primary hover:scale-125 transition-transform" onclick="updateQty(this, 1)">+</button>
+                            </div>
+                            <button class="shimmer-btn bg-primary text-background px-8 py-3 rounded-full font-label-caps text-[10px] tracking-widest hover:brightness-110 transition-all uppercase font-bold" onclick="addToCart('Basmati Ke Khet Se Combo 1', 460, this)">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Combo 2 -->
+                <div class="glass-card reveal-on-scroll menu-item" data-name="ocean bounty combo">
+                    <div class="p-8 space-y-4 h-full flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="font-headline-sm text-[22px] text-on-surface italic leading-tight">Ocean Bounty <br/>Combo</h3>
+                                <span class="text-primary font-bold text-xl">₹580</span>
+                            </div>
+                            <p class="font-body-md text-on-surface-variant text-[14px] leading-relaxed">
+                                A curated tribute to the Malvani coast featuring the catch of the day, simmered in a velvet coconut reduction with hand-pounded spices.
+                            </p>
+                        </div>
+                        <div class="pt-6 flex items-center justify-between">
+                            <div class="flex items-center gap-4 bg-background/60 rounded-full px-4 py-2 border border-primary/10">
+                                <button class="text-primary hover:scale-125 transition-transform" onclick="updateQty(this, -1)">-</button>
+                                <span class="qty font-bold text-sm min-w-[1.5rem] text-center">1</span>
+                                <button class="text-primary hover:scale-125 transition-transform" onclick="updateQty(this, 1)">+</button>
+                            </div>
+                            <button class="shimmer-btn bg-primary text-background px-8 py-3 rounded-full font-label-caps text-[10px] tracking-widest hover:brightness-110 transition-all uppercase font-bold" onclick="addToCart('Ocean Bounty Combo', 580, this)">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Combo 3 -->
+                <div class="glass-card reveal-on-scroll menu-item" data-name="royal tawa thali">
+                    <div class="p-8 space-y-4 h-full flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="font-headline-sm text-[22px] text-on-surface italic leading-tight">Royal Tawa <br/>Thali</h3>
+                                <span class="text-primary font-bold text-xl">₹720</span>
+                            </div>
+                            <p class="font-body-md text-on-surface-variant text-[14px] leading-relaxed">
+                                The ultimate imperial experience. A grand ensemble of five miniature delicacies, chosen daily by our Chef de Cuisine.
+                            </p>
+                        </div>
+                        <div class="pt-6 flex items-center justify-between">
+                            <div class="flex items-center gap-4 bg-background/60 rounded-full px-4 py-2 border border-primary/10">
+                                <button class="text-primary hover:scale-125 transition-transform" onclick="updateQty(this, -1)">-</button>
+                                <span class="qty font-bold text-sm min-w-[1.5rem] text-center">1</span>
+                                <button class="text-primary hover:scale-125 transition-transform" onclick="updateQty(this, 1)">+</button>
+                            </div>
+                            <button class="shimmer-btn bg-primary text-background px-8 py-3 rounded-full font-label-caps text-[10px] tracking-widest hover:brightness-110 transition-all uppercase font-bold" onclick="addToCart('Royal Tawa Thali', 720, this)">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="ornamental-divider"></div>
+
+        <!-- Soups Section -->
+        <section class="scroll-mt-64 menu-section" id="soups">
+            <div class="text-center mb-16 reveal-on-scroll">
+                <h2 class="font-headline-md text-[40px] text-on-surface uppercase tracking-widest mb-4">Soups</h2>
+                <p class="font-body-md text-on-surface-variant italic">Refined elixirs to awaken the palate</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Soup Item with Image -->
+                <div class="glass-card flex flex-col md:flex-row reveal-on-scroll menu-item" data-name="cream of tomato soup">
+                    <div class="md:w-1/3 h-48 md:h-auto overflow-hidden">
+                        <img alt="Cream of Tomato" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNvJzQC4QOn6rSY0U1yXVajRPk_c61D0Yvgh8l0oP2YxFvP9oIVpNvbUFOYrdr_uBvGsjeIkzBDddAN_FvQqRRr4u-6QVLqqq9WgXAhvmQGzUbyqwwI05xOV1YsjVn2tVOZKwpUU2lJ3tD_p3Dnn2ypwkM9yZONyExVE88oInULyhQ8b_fTtvHfK4x13rgXN2YzjZUmYd7JUoHvTAzXHci35gU739mHNFEMo82ew5t8xmWmQe7qUONJbctxFK0GIIIWTrTfNJfRSLx"/>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-baseline mb-2">
+                                <h3 class="font-headline-sm text-[20px] text-on-surface">Cream Of Tomato Soup</h3>
+                                <span class="text-primary font-bold">₹265</span>
+                            </div>
+                            <p class="text-[13px] text-on-surface-variant italic">Silky Roma tomatoes infused with charred basil oil and fresh cream swirl.</p>
+                        </div>
+                        <div class="mt-6 flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <button class="text-primary text-sm font-bold" onclick="updateQty(this, -1)">-</button>
+                                <span class="qty font-bold text-xs">1</span>
+                                <button class="text-primary text-sm font-bold" onclick="updateQty(this, 1)">+</button>
+                            </div>
+                            <button class="font-label-caps text-[10px] tracking-widest text-primary hover:underline font-bold" onclick="addToCart('Cream Of Tomato Soup', 265, this)">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Additional Soups -->
+                <div class="glass-card p-8 flex flex-col justify-between reveal-on-scroll menu-item" data-name="veg manchow soup">
+                    <div>
+                        <div class="flex justify-between items-baseline mb-2">
+                            <h3 class="font-headline-sm text-[20px] text-on-surface">Veg Manchow Soup</h3>
+                            <span class="text-primary font-bold">₹265</span>
+                        </div>
+                        <p class="text-[13px] text-on-surface-variant italic">A fiery Indo-Chinese classic with finely diced farm vegetables and crispy golden noodles.</p>
+                    </div>
+                    <div class="mt-6 flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <button class="text-primary text-sm font-bold" onclick="updateQty(this, -1)">-</button>
+                            <span class="qty font-bold text-xs">1</span>
+                            <button class="text-primary text-sm font-bold" onclick="updateQty(this, 1)">+</button>
+                        </div>
+                        <button class="font-label-caps text-[10px] tracking-widest text-primary hover:underline font-bold" onclick="addToCart('Veg Manchow Soup', 265, this)">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="ornamental-divider"></div>
+
+        <!-- Starters Section -->
+        <section class="scroll-mt-64 menu-section" id="starters">
+            <div class="text-center mb-16 reveal-on-scroll">
+                <h2 class="font-headline-md text-[40px] text-on-surface uppercase tracking-widest mb-4">Starters</h2>
+                <p class="font-body-md text-on-surface-variant italic">Handcrafted appetizers from the clay oven and wok</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Paneer Tikka -->
+                <div class="glass-card reveal-on-scroll menu-item" data-name="pesto paneer tikka">
+                    <div class="relative h-56">
+                        <img alt="Pesto Paneer Tikka" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaHpl0EcgVFbghwwZUr0agMsPre-FXmTaGdrahcscfIRFVKNUuLeTbbzqLEWjpPZgJ3Sd5_x4dcB4oexf_KjI8Z2ABmtpGarhwYiWat2G60yyhYXNwxBcM84bc_p2IUSc1Gc01HYdVVIY2RhNEoiqGlXuK08dHOUzK--v7EIfmwPwldrNRT8WKqkVd9_sYPGRRK9DMQqUm56cm2v41I_fSPehrE4455K_qY4TMBaPxalYdZXsD83TNXRbKYLyw-LB5y0ziZXvDJIVQ"/>
+                        <div class="absolute top-4 right-4 bg-primary/20 backdrop-blur-md text-primary px-3 py-1 rounded-full text-[9px] font-bold tracking-[0.2em]">POPULAR</div>
+                    </div>
+                    <div class="p-8 space-y-4">
+                        <div class="flex justify-between items-start">
+                            <h4 class="font-headline-sm text-[18px] text-on-surface">Pesto Paneer Tikka</h4>
+                            <span class="text-primary font-bold">₹420</span>
+                        </div>
+                        <p class="text-[13px] text-on-surface-variant leading-relaxed">Artisan cottage cheese marinated in a fusion of pine nut pesto and yellow chili spices, grilled to perfection.</p>
+                        <div class="flex items-center justify-between pt-4">
+                            <div class="flex items-center gap-3">
+                                <button class="text-primary text-lg" onclick="updateQty(this, -1)">-</button>
+                                <span class="qty font-bold text-sm">1</span>
+                                <button class="text-primary text-lg" onclick="updateQty(this, 1)">+</button>
+                            </div>
+                            <button class="shimmer-btn bg-surface border border-primary/30 px-5 py-2.5 rounded-full text-[9px] font-label-caps tracking-[0.1em] hover:bg-primary hover:text-background transition-all font-bold" onclick="addToCart('Pesto Paneer Tikka', 420, this)">Add To Tray</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Murgh Malai Tikka -->
+                <div class="glass-card reveal-on-scroll menu-item" data-name="murgh malai tikka">
+                    <div class="relative h-56">
+                        <img alt="Murgh Malai Tikka" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWUnbSCveEnWd3aPff7NXkT0h_efVb1DijMB8-nUyzstsaQEZElIQzVgCV4l3YmWgYMTCJ_WHwNH10_nKH6ILoW1rigAsS_COLqESIdE5JbIKEOAAHL_uSW_qQ6FA8v0LD3hHtcJVX3dYbbmdlZU5i1-unHOOO8rTNL4H2MmalwEH9AeyDoJOPPwM6SQcicGYX2C3PmwZ5jbYMJhJGeDrqeQxIYF3rj-TT50gFZUE_DA224gvKOSjOVdG7ax8CeMofUZikM5iBydL_"/>
+                    </div>
+                    <div class="p-8 space-y-4">
+                        <div class="flex justify-between items-start">
+                            <h4 class="font-headline-sm text-[18px] text-on-surface">Murgh Malai Tikka</h4>
+                            <span class="text-primary font-bold">₹520</span>
+                        </div>
+                        <p class="text-[13px] text-on-surface-variant leading-relaxed">Supreme cuts of chicken velveted in a marinade of hung curd, cardamom, and white pepper. A melt-in-mouth masterpiece.</p>
+                        <div class="flex items-center justify-between pt-4">
+                            <div class="flex items-center gap-3">
+                                <button class="text-primary text-lg" onclick="updateQty(this, -1)">-</button>
+                                <span class="qty font-bold text-sm">1</span>
+                                <button class="text-primary text-lg" onclick="updateQty(this, 1)">+</button>
+                            </div>
+                            <button class="shimmer-btn bg-surface border border-primary/30 px-5 py-2.5 rounded-full text-[9px] font-label-caps tracking-[0.1em] hover:bg-primary hover:text-background transition-all font-bold" onclick="addToCart('Murgh Malai Tikka', 520, this)">Add To Tray</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Mutton Ghee Roast -->
+                <div class="glass-card reveal-on-scroll menu-item" data-name="mutton ghee roast">
+                    <div class="p-8 flex flex-col justify-between h-full">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-start">
+                                <div class="flex items-center gap-2">
+                                    <h4 class="font-headline-sm text-[18px] text-on-surface">Mutton Ghee Roast</h4>
+                                    <span class="bg-red-900/40 text-red-400 px-2 py-0.5 rounded text-[8px] font-bold tracking-widest mt-2 self-start">SPICY</span>
+                                </div>
+                                <span class="text-primary font-bold">₹550</span>
+                            </div>
+                            <p class="text-[13px] text-on-surface-variant leading-relaxed">Tender mutton slow-cooked in pure Desi Ghee with an aromatic Kundapur spice blend. Intense and deeply satisfying.</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-8">
+                            <div class="flex items-center gap-3">
+                                <button class="text-primary text-lg" onclick="updateQty(this, -1)">-</button>
+                                <span class="qty font-bold text-sm">1</span>
+                                <button class="text-primary text-lg" onclick="updateQty(this, 1)">+</button>
+                            </div>
+                            <button class="shimmer-btn bg-surface border border-primary/30 px-5 py-2.5 rounded-full text-[9px] font-label-caps tracking-[0.1em] hover:bg-primary hover:text-background transition-all font-bold" onclick="addToCart('Mutton Ghee Roast', 550, this)">Add To Tray</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="ornamental-divider"></div>
+
+        <!-- Main Course Section -->
+        <section class="scroll-mt-64 menu-section" id="main-course">
+            <div class="text-center mb-16 reveal-on-scroll">
+                <h2 class="font-headline-md text-[40px] text-on-surface uppercase tracking-widest mb-4">Main Course</h2>
+                <p class="font-body-md text-on-surface-variant italic">Grand narratives of coastal and imperial Indian dining</p>
+            </div>
+            <div class="space-y-12">
+                <!-- Featured Dish -->
+                <div class="glass-card flex flex-col lg:flex-row reveal-on-scroll menu-item" data-name="paneer makhani lababdar">
+                    <div class="lg:w-2/5 h-80 lg:h-auto overflow-hidden">
+                        <img alt="Paneer Lababdar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYrIAs4eK6mH5WwdcZASfoPJqbpHo_rfwD-OPt2MZa0stVVzPHtBsLplETuRKmX4ij8AfonVxdJCAchWOU2j6NknIzX-1vWeT8pUp59Wz6UOUuH2B6c2wiixWKAxydN1VBcCGsMK7I-yuAZ1dzzb56lVDTjZzXDFAG3tOjQ4Y0jyTGY_xrkIEMzoK1kXoRajkgYe2fjAXYE9Ba46HtHQacWXdKioV6YAI44K9MutU7FOQpwKMt00raP3BlZqy5rED5zVSEVxGtBhZp"/>
+                    </div>
+                    <div class="p-8 lg:p-12 flex-1 flex flex-col justify-center">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h3 class="font-headline-md text-[32px] text-on-surface italic leading-tight">Paneer Makhani Lababdar</h3>
+                                <p class="font-body-md text-primary italic mt-2 uppercase tracking-[0.2em] text-[12px]">The Imperial Signature</p>
+                            </div>
+                            <span class="text-primary font-bold text-3xl">₹480</span>
+                        </div>
+                        <p class="font-body-lg text-on-surface-variant leading-relaxed mb-10">
+                            Cubes of premium cottage cheese simmered in a decadent, slow-reduced tomato and onion gravy, enriched with double cream and artisanal butter.
+                        </p>
+                        <div class="flex items-center gap-8">
+                            <div class="flex items-center gap-6 bg-background/60 rounded-full px-6 py-3 border border-primary/20">
+                                <button class="text-primary text-xl font-bold" onclick="updateQty(this, -1)">-</button>
+                                <span class="qty font-bold text-lg min-w-[2rem] text-center">1</span>
+                                <button class="text-primary text-xl font-bold" onclick="updateQty(this, 1)">+</button>
+                            </div>
+                            <button class="shimmer-btn flex-1 bg-primary text-background px-10 py-4 rounded-full font-label-caps text-[12px] tracking-widest hover:brightness-110 transition-all font-bold uppercase" onclick="addToCart('Paneer Makhani Lababdar', 480, this)">Experience Dish</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- List Style Main Dishes -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="glass-card p-8 flex flex-col justify-between reveal-on-scroll menu-item" data-name="lamb rogan josh">
+                        <div class="mb-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex flex-col">
+                                    <h4 class="font-headline-sm text-[22px] text-on-surface italic">Lamb Rogan Josh</h4>
+                                    <span class="bg-red-900/40 text-red-400 px-2 py-0.5 rounded text-[8px] font-bold tracking-widest mt-2 self-start">VERY SPICY</span>
+                                </div>
+                                <span class="text-primary font-bold text-xl">₹890</span>
+                            </div>
+                            <p class="text-[14px] text-on-surface-variant">Kashmiri style slow-braised lamb shanks with a hint of ghost pepper for a modern, daring finish.</p>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <button class="text-primary" onclick="updateQty(this, -1)">-</button>
+                                <span class="qty font-bold text-sm">1</span>
+                                <button class="text-primary" onclick="updateQty(this, 1)">+</button>
+                            </div>
+                            <button class="shimmer-btn bg-primary text-background px-6 py-2 rounded-full font-label-caps text-[10px] tracking-widest font-bold uppercase" onclick="addToCart('Lamb Rogan Josh', 890, this)">Add</button>
+                        </div>
+                    </div>
+                    <div class="glass-card p-8 flex flex-col justify-between reveal-on-scroll menu-item" data-name="malabar prawn curry">
+                        <div class="mb-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <h4 class="font-headline-sm text-[22px] text-on-surface italic">Malabar Prawn Curry</h4>
+                                <span class="text-primary font-bold text-xl">₹950</span>
+                            </div>
+                            <p class="text-[14px] text-on-surface-variant">Jumbo prawns simmered in a base of raw mango and freshly squeezed coconut milk with curry leaves.</p>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <button class="text-primary" onclick="updateQty(this, -1)">-</button>
+                                <span class="qty font-bold text-sm">1</span>
+                                <button class="text-primary" onclick="updateQty(this, 1)">+</button>
+                            </div>
+                            <button class="shimmer-btn bg-primary text-background px-6 py-2 rounded-full font-label-caps text-[10px] tracking-widest font-bold uppercase" onclick="addToCart('Malabar Prawn Curry', 950, this)">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="ornamental-divider"></div>
+
+        <!-- Breads & Rice Section -->
+        <section class="scroll-mt-64 menu-section" id="breads-rice">
+            <div class="text-center mb-16 reveal-on-scroll">
+                <h2 class="font-headline-md text-[40px] text-on-surface uppercase tracking-widest mb-4">Breads &amp; Rice</h2>
+                <p class="font-body-md text-on-surface-variant italic">The soul of the Indian feast</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <h3 class="font-headline-sm text-[24px] text-on-surface uppercase tracking-widest border-l-2 border-primary pl-4 mb-8">Artisan Breads</h3>
+                    <div class="glass-card p-8 space-y-6">
+                        <div class="flex justify-between items-center group menu-item" data-name="butter garlic naan">
+                            <div class="space-y-1">
+                                <span class="font-body-lg text-on-surface-variant group-hover:text-on-surface transition-colors block">Butter Garlic Naan</span>
+                                <span class="text-[11px] text-primary/60 italic">Hand-stretched, clay oven baked</span>
+                            </div>
+                            <div class="flex items-center gap-6">
+                                <span class="text-primary font-bold">₹90</span>
+                                <button class="shimmer-btn bg-primary text-background w-8 h-8 rounded-full flex items-center justify-center" onclick="addToCart('Butter Garlic Naan', 90, this)">
+                                    <span class="material-symbols-outlined text-[18px]">add</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="h-px bg-primary/10"></div>
+                        <div class="flex justify-between items-center group menu-item" data-name="roomali roti">
+                            <div class="space-y-1">
+                                <span class="font-body-lg text-on-surface-variant group-hover:text-on-surface transition-colors block">Roomali Roti</span>
+                                <span class="text-[11px] text-primary/60 italic">Thin as a handkerchief</span>
+                            </div>
+                            <div class="flex items-center gap-6">
+                                <span class="text-primary font-bold">₹60</span>
+                                <button class="shimmer-btn bg-primary text-background w-8 h-8 rounded-full flex items-center justify-center" onclick="addToCart('Roomali Roti', 60, this)">
+                                    <span class="material-symbols-outlined text-[18px]">add</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="font-headline-sm text-[24px] text-on-surface uppercase tracking-widest border-l-2 border-primary pl-4 mb-8">Fragrant Rice</h3>
+                    <div class="glass-card p-8 space-y-6">
+                        <div class="flex justify-between items-center group menu-item" data-name="mutton dum biryani">
+                            <div class="space-y-1">
+                                <span class="font-body-lg text-on-surface-variant group-hover:text-on-surface transition-colors block">Mutton Dum Biryani</span>
+                                <span class="text-[11px] text-primary/60 italic">Slow-cooked under 'dum'</span>
+                            </div>
+                            <div class="flex items-center gap-6">
+                                <span class="text-primary font-bold">₹650</span>
+                                <button class="shimmer-btn bg-primary text-background w-8 h-8 rounded-full flex items-center justify-center" onclick="addToCart('Mutton Dum Biryani', 650, this)">
+                                    <span class="material-symbols-outlined text-[18px]">add</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="h-px bg-primary/10"></div>
+                        <div class="flex justify-between items-center group menu-item" data-name="steamed basmati rice">
+                            <div class="space-y-1">
+                                <span class="font-body-lg text-on-surface-variant group-hover:text-on-surface transition-colors block">Steamed Basmati Rice</span>
+                                <span class="text-[11px] text-primary/60 italic">Aged long-grain rice</span>
+                            </div>
+                            <div class="flex items-center gap-6">
+                                <span class="text-primary font-bold">₹120</span>
+                                <button class="shimmer-btn bg-primary text-background w-8 h-8 rounded-full flex items-center justify-center" onclick="addToCart('Steamed Basmati Rice', 120, this)">
+                                    <span class="material-symbols-outlined text-[18px]">add</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-20 px-margin-mobile md:px-margin-desktop bg-surface-container-lowest border-t border-primary/20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
+            <div class="space-y-6">
+                <div class="font-headline-sm text-[28px] text-on-surface uppercase tracking-widest">The Coastal Tawa</div>
+                <div class="w-12 h-0.5 bg-primary/40"></div>
+                <p class="font-body-md text-on-surface-variant leading-relaxed italic">
+                    An exquisite passage to coastal heritage and modern alchemical Indian cuisine. Savor ancient secrets blended with luxurious hospitality.
+                </p>
+            </div>
+            <div class="space-y-6">
+                <div class="font-label-caps text-primary tracking-widest uppercase">Dining Hours</div>
+                <ul class="text-on-surface-variant space-y-4">
+                    <li class="flex justify-between border-b border-white/5 pb-2"><span>Lunch</span> <span>12:00 PM – 3:30 PM</span></li>
+                    <li class="flex justify-between border-b border-white/5 pb-2"><span>Dinner</span> <span>07:00 PM – 11:30 PM</span></li>
+                    <li class="text-primary italic text-sm">Open daily for royal dining experience.</li>
+                </ul>
+            </div>
+            <div class="space-y-6">
+                <div class="font-label-caps text-primary tracking-widest uppercase">Location</div>
+                <p class="text-on-surface-variant leading-relaxed">
+                    Ground, Empire Ways CHS,<br/>
+                    Junction, Eastern Express Hwy, near Nitin Co.,<br/>
+                    Thane West, Maharashtra 400606
+                </p>
+                <div class="flex items-center gap-2 text-primary group cursor-pointer pt-2">
+                    <span class="material-symbols-outlined text-[18px]" data-icon="mail">mail</span>
+                    <span class="group-hover:underline">reservations@coastaltawa.com</span>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-16 border-t border-primary/5 mt-16 text-center">
+            <p class="font-label-caps text-[10px] text-on-surface-variant tracking-[0.3em] uppercase opacity-40">
+                © 2026 THE COASTAL TAWA RESTAURANT. CRAFTED FOR HAUTE INDIAN GASTRONOMY.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Global Cart State script -->
+    <script src="cart.js"></script>
+
+    <!-- Page custom script -->
+    <script>
+        // Mobile Navigation Toggle
+        function toggleMobileNav() {
+            const nav = document.getElementById('mobile-nav');
+            if (nav.classList.contains('opacity-0')) {
+                nav.classList.remove('opacity-0', 'pointer-events-none');
+                nav.classList.add('opacity-100', 'pointer-events-auto');
+            } else {
+                nav.classList.add('opacity-0', 'pointer-events-none');
+                nav.classList.remove('opacity-100', 'pointer-events-auto');
+            }
+        }
+
+        // Quantity selector increment / decrement
+        function updateQty(btn, delta) {
+            const container = btn.parentElement;
+            const qtyEl = container.querySelector('.qty');
+            let currentQty = parseInt(qtyEl.innerText);
+            currentQty = Math.max(1, currentQty + delta);
+            qtyEl.innerText = currentQty;
+        }
+
+        // Add to cart local handler - triggers global state engine
+        function addToCart(name, price, btn) {
+            const card = btn.closest('.menu-item') || btn.closest('.glass-card');
+            const imgEl = card.querySelector('img');
+            const imgUrl = imgEl ? imgEl.src : null;
+            
+            // Invoke global cart.js API
+            addToTawaCart(name, price, imgUrl);
+        }
+
+        // Instant Search
+        const searchInput = document.getElementById('menu-search');
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase().trim();
+            const items = document.querySelectorAll('.menu-item');
+            
+            items.forEach(item => {
+                const name = item.getAttribute('data-name') || item.innerText.toLowerCase();
+                if(name.toLowerCase().includes(term)) {
+                    item.style.display = 'flex';
+                    item.style.opacity = '1';
+                    item.style.transform = 'scale(1)';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Hide section headers if no visible items
+            document.querySelectorAll('.menu-section').forEach(section => {
+                const visibleItems = Array.from(section.querySelectorAll('.menu-item')).filter(i => i.style.display !== 'none');
+                section.style.display = visibleItems.length > 0 ? 'block' : 'none';
+            });
+        });
+
+        // Reveal animations using IntersectionObserver
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('active');
+                    }, index * 100); 
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // Category scroll spy
+        const chips = document.querySelectorAll('.category-chip');
+        const sections = document.querySelectorAll('.menu-section');
+
+        window.addEventListener('scroll', () => {
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 250)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            chips.forEach(chip => {
+                chip.classList.remove('active');
+                chip.classList.add('text-on-surface-variant');
+                if (chip.getAttribute('data-target') === current) {
+                    chip.classList.add('active');
+                    chip.classList.remove('text-on-surface-variant');
+                }
+            });
+        });
+
+        chips.forEach(chip => {
+            chip.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 160,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

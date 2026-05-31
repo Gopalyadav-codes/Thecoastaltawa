@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Reservations | The Coastal Tawa</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Secure your private chamber, open-air terrace table, or main dining suite at The Coastal Tawa. Indulge in Thane's most premium royal Indian gastronomy." />
+    <meta name="keywords" content="The Coastal Tawa Reservations, Book Table Thane, Fine Dining reservation, Private dining Thane, Royal suite booking" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;family=Playfair+Display:wght@600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#D4AF37", // Royal Gold
+                        "secondary": "#F07178", // Coastal Coral
+                        "background": "#1F0507", // Deep Charcoal Maroon
+                        "surface": "#2B0E11", // Card Surface
+                        "on-surface": "#F2E8DF", // Ivory White
+                        "on-surface-variant": "#A58A8A", // Muted Dusty Rose
+                        "text-gold-subtle": "#D4AF37",
+                        "maroon-dark": "#2B0E11",
+                        "white-pure": "#FFFFFF",
+                        "on-primary-fixed-variant": "rgba(212, 175, 55, 0.08)",
+                        "surface-container": "rgba(212, 175, 55, 0.04)",
+                        "surface-container-high": "rgba(212, 175, 55, 0.12)",
+                        "surface-container-low": "rgba(212, 175, 55, 0.02)",
+                        "surface-container-lowest": "#120203"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "stack-sm": "8px",
+                        "stack-lg": "48px",
+                        "section-gap": "120px",
+                        "margin-mobile": "20px",
+                        "stack-md": "16px",
+                        "gutter": "24px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Manrope"],
+                        "label-caps": ["Manrope"],
+                        "headline-sm": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "body-lg": ["Manrope"],
+                        "headline-md": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.15em", "fontWeight": "700"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .backdrop-blur-custom {
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        body {
+            background-color: #1F0507;
+            scroll-behavior: smooth;
+        }
+        /* Prevent browser autofill from overriding background and text colors */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        input:-webkit-autofill:active,
+        textarea:-webkit-autofill,
+        textarea:-webkit-autofill:hover,
+        textarea:-webkit-autofill:focus,
+        textarea:-webkit-autofill:active,
+        select:-webkit-autofill,
+        select:-webkit-autofill:hover,
+        select:-webkit-autofill:focus,
+        select:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 1000px #2B0E11 inset !important;
+            -webkit-text-fill-color: #F2E8DF !important;
+            transition: background-color 5000s ease-in-out 0s !important;
+        }
+        
+        /* Premium Form Interactions & Floating Labels */
+        .floating-label-group {
+            position: relative;
+        }
+        .floating-label-group input, 
+        .floating-label-group select, 
+        .floating-label-group textarea {
+            border: 1px solid rgba(212, 175, 55, 0.25) !important;
+            background: rgba(43, 14, 17, 0.6) !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #F2E8DF !important;
+        }
+        .floating-label-group label {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            color: rgba(242, 232, 223, 0.45);
+            font-size: 14px;
+            z-index: 10;
+        }
+        .floating-label-group textarea ~ label {
+            top: 24px;
+        }
+        .floating-label-group input:focus ~ label,
+        .floating-label-group input:not(:placeholder-shown) ~ label,
+        .floating-label-group select:focus ~ label,
+        .floating-label-group select:not([value=""]):valid ~ label,
+        .floating-label-group textarea:focus ~ label,
+        .floating-label-group textarea:not(:placeholder-shown) ~ label {
+            top: 0;
+            left: 16px;
+            font-size: 11px;
+            color: #F8F8F8 !important;
+            background: #1F0507;
+            padding: 0 8px;
+            transform: translateY(-50%);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .floating-label-group input:focus, 
+        .floating-label-group select:focus, 
+        .floating-label-group textarea:focus {
+            border-color: #D4AF37 !important;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.25) !important;
+            outline: none !important;
+        }
+
+        /* Button Enhancement - Shimmer */
+        .btn-shimmer {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .btn-shimmer:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.35);
+        }
+        .btn-shimmer::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(30deg);
+            transition: all 0.6s ease;
+        }
+        .btn-shimmer:hover::after {
+            left: 140%;
+        }
+
+        /* Cinematic Entrance & Scroll Animations */
+        @keyframes revealUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .reveal-up { animation: revealUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        .scroll-reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .scroll-reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Feature Card Enhancements */
+        .feature-card {
+            transition: all 0.4s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+        .feature-card:hover .feature-icon {
+            transform: scale(1.05);
+            color: #D4AF37;
+        }
+
+        /* Success Animation */
+        @keyframes drawCheck {
+            to { stroke-dashoffset: 0; }
+        }
+        .checkmark-path {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: drawCheck 0.6s ease-out forwards 0.3s;
+        }
+
+        /* --- PRESERVE BRANDING & OVERRIDE TYPOGRAPHY GOLD TO PREMIUM WHITE --- */
+        *:not(.material-symbols-outlined):not(a):not(button).text-primary,
+        *:not(.material-symbols-outlined):not(a):not(button).text-royal-gold,
+        *:not(.material-symbols-outlined):not(a):not(button).text-text-gold-subtle {
+            color: #F8F8F8 !important;
+        }
+
+        /* --- INTERACTIVE TEXT COLOR STATES --- */
+        .interactive-text {
+            color: #F8F8F8 !important;
+            transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        .interactive-text:hover {
+            color: #D4AF37 !important;
+        }
+        .interactive-text:active {
+            color: #C9A227 !important;
+        }
+        .interactive-text.selected {
+            color: #D4AF37 !important;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 bg-background/80 backdrop-blur-md border-b border-primary/20 transition-all duration-300">
+        <a href="index.html" class="font-display-lg-mobile text-[20px] md:font-display-lg md:text-headline-sm interactive-text uppercase tracking-widest cursor-pointer font-bold">
+            The Coastal Tawa
+        </a>
+        <div class="hidden md:flex items-center space-x-8">
+            <a class="font-label-caps text-label-caps interactive-text" href="index.html">Home</a>
+            <a class="font-label-caps text-label-caps interactive-text" href="menu.html">Menu</a>
+            <a class="font-label-caps text-label-caps interactive-text selected border-b border-primary pb-1" href="reservations.html">Reservations</a>
+            <a class="font-label-caps text-label-caps interactive-text" href="contact.html">Contact</a>
+        </div>
+        <div class="flex items-center space-x-6">
+            <button onclick="toggleCart()" class="text-primary hover:brightness-125 transition-transform active:scale-95 duration-300 relative p-2">
+                <span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+                <div class="absolute top-0 right-0 bg-primary text-background px-1.5 py-0.5 rounded-full text-[9px] font-bold cart-count" id="cart-count">0</div>
+            </button>
+            <button onclick="toggleMobileNav()" class="md:hidden text-primary p-2">
+                <span class="material-symbols-outlined" data-icon="menu">menu</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Nav Overlay -->
+    <div id="mobile-nav" class="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl transition-all duration-300 opacity-0 pointer-events-none flex flex-col justify-center items-center gap-8 md:hidden">
+        <button onclick="toggleMobileNav()" class="absolute top-6 right-6 material-symbols-outlined text-primary text-3xl">close</button>
+        <a href="index.html" class="font-headline-md text-2xl interactive-text uppercase tracking-widest" onclick="toggleMobileNav()">Home</a>
+        <a href="menu.html" class="font-headline-md text-2xl interactive-text uppercase tracking-widest" onclick="toggleMobileNav()">Menu</a>
+        <a href="reservations.html" class="font-headline-md text-2xl interactive-text selected uppercase tracking-widest" onclick="toggleMobileNav()">Reservations</a>
+        <a href="contact.html" class="font-headline-md text-2xl interactive-text uppercase tracking-widest" onclick="toggleMobileNav()">Contact</a>
+    </div>
+
+    <main class="relative pt-32">
+        <!-- Hero Background Text -->
+        <div class="absolute top-0 left-0 w-full h-[600px] overflow-hidden opacity-5 pointer-events-none select-none">
+            <h1 class="font-display-lg text-[20vw] leading-none whitespace-nowrap text-primary transform -rotate-12 translate-y-24 translate-x-[-10%]">
+                RESERVATIONS
+            </h1>
+        </div>
+        
+        <!-- Reservation Header -->
+        <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center mb-stack-lg relative z-10">
+            <span class="reveal-up font-label-caps text-label-caps text-primary tracking-[0.3em] uppercase mb-stack-sm block font-bold">Private Dining Chambers</span>
+            <h2 class="reveal-up delay-1 font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-stack-md font-bold">SECURE YOUR TABLE</h2>
+            <p class="reveal-up delay-2 max-w-2xl mx-auto font-body-lg text-body-lg text-on-surface-variant">
+                Experience an exquisite, sensory-rich journey through contemporary Indian gastronomy. Curated with premium ingredients and presented in a majestic visual setting.
+            </p>
+        </section>
+
+        <!-- Main Form Section -->
+        <section class="reveal-up delay-3 max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop pb-24 relative z-10">
+            <div class="bg-surface/50 border border-primary/30 p-8 md:p-12 backdrop-blur-custom shadow-2xl rounded-[32px] overflow-hidden">
+                <!-- Success State -->
+                <div class="hidden flex-col items-center justify-center py-12 text-center animate-in fade-in duration-500" id="success-state">
+                    <svg class="w-24 h-24 text-primary mb-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path class="checkmark-path" d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                    </svg>
+                    <h3 class="font-headline-md text-on-surface mb-4 text-white-pure">Reservation Secured</h3>
+                    <p class="text-on-surface-variant max-w-sm">Your table request has been received by our royal concierge. We will confirm your imperial suite momentarily.</p>
+                    <button class="mt-8 font-label-caps interactive-text underline tracking-widest uppercase font-bold" onclick="window.location.reload()">Make Another Request</button>
+                </div>
+                
+                <form class="space-y-gutter" id="reservation-form">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+                        <!-- Name Field -->
+                        <div class="floating-label-group">
+                            <input class="w-full h-16 px-6 pt-4 text-on-surface font-body-md rounded-full border-none ring-0" id="name" placeholder=" " required type="text"/>
+                            <label for="name">Your Full Name</label>
+                        </div>
+                        <!-- Email Field -->
+                        <div class="floating-label-group">
+                            <input class="w-full h-16 px-6 pt-4 text-on-surface font-body-md rounded-full border-none ring-0" id="email" placeholder=" " required type="email"/>
+                            <label for="email">Email Address</label>
+                        </div>
+                        <!-- Date Field -->
+                        <div class="floating-label-group">
+                            <input class="w-full h-16 px-6 pt-4 text-on-surface font-body-md rounded-full border-none ring-0" id="date" placeholder=" " required type="date"/>
+                            <label for="date">Preferred Date</label>
+                        </div>
+                        <!-- Time Field -->
+                        <div class="floating-label-group">
+                            <select class="w-full h-16 px-6 pt-4 text-on-surface font-body-md rounded-full border-none ring-0 appearance-none bg-transparent" id="time" required>
+                                <option disabled selected value=""></option>
+                                <option class="bg-background">12:30 PM</option>
+                                <option class="bg-background">01:30 PM</option>
+                                <option class="bg-background">07:30 PM</option>
+                                <option class="bg-background">08:30 PM</option>
+                                <option class="bg-background">09:30 PM</option>
+                                <option class="bg-background">10:30 PM</option>
+                            </select>
+                            <label for="time">Preferred Hour</label>
+                        </div>
+                        <!-- Guests Field -->
+                        <div class="floating-label-group">
+                            <select class="w-full h-16 px-6 pt-4 text-on-surface font-body-md rounded-full border-none ring-0 appearance-none bg-transparent" id="guests" required>
+                                <option disabled selected value=""></option>
+                                <option class="bg-background">2 Persons</option>
+                                <option class="bg-background">4 Persons</option>
+                                <option class="bg-background">6 Persons</option>
+                                <option class="bg-background">Private Dining (8+)</option>
+                            </select>
+                            <label for="guests">Number of Guests</label>
+                        </div>
+                        <!-- Venue Field -->
+                        <div class="floating-label-group">
+                            <select class="w-full h-16 px-6 pt-4 text-on-surface font-body-md rounded-full border-none ring-0 appearance-none bg-transparent" id="venue" required>
+                                <option disabled selected value=""></option>
+                                <option class="bg-background">Coastal Lounge (Main Hall)</option>
+                                <option class="bg-background">Tawa Terrace (Open Air)</option>
+                                <option class="bg-background">The Pearl Suite (Private)</option>
+                                <option class="bg-background">Amber Gallery (Fine Art)</option>
+                            </select>
+                            <label for="venue">Imperial Dining Chamber</label>
+                        </div>
+                    </div>
+                    <!-- Message Field -->
+                    <div class="floating-label-group pt-4">
+                        <textarea class="w-full px-6 pt-6 text-on-surface font-body-md rounded-[24px] border-none ring-0" id="message" placeholder=" " rows="4"></textarea>
+                        <label for="message">Special Requests / Occasion details...</label>
+                    </div>
+                    <!-- Submit Button -->
+                    <div class="pt-8">
+                        <button class="btn-shimmer w-full bg-primary text-background font-label-caps text-label-caps uppercase py-6 tracking-widest font-bold shadow-[0_0_30px_rgba(212,175,55,0.25)] rounded-full" type="submit">
+                            Request Imperial Reservation
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Reservation Process Timeline -->
+        <section class="scroll-reveal max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop mb-section-gap relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-start space-y-12 md:space-y-0 relative">
+                <!-- Connector Line -->
+                <div class="hidden md:block absolute top-6 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent -z-10"></div>
+                <div class="flex flex-col items-center text-center space-y-4 flex-1">
+                    <div class="w-12 h-12 rounded-full bg-surface border border-primary flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-xl">send</span>
+                    </div>
+                    <div>
+                        <h5 class="font-label-caps text-label-caps text-on-surface text-[10px] font-bold">1. Submit Request</h5>
+                        <p class="text-[12px] text-on-surface-variant mt-1">Provide your details</p>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center text-center space-y-4 flex-1">
+                    <div class="w-12 h-12 rounded-full bg-surface border border-primary flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-xl">check_circle</span>
+                    </div>
+                    <div>
+                        <h5 class="font-label-caps text-label-caps text-on-surface text-[10px] font-bold">2. Team Confirmation</h5>
+                        <p class="text-[12px] text-on-surface-variant mt-1">Personal concierge outreach</p>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center text-center space-y-4 flex-1">
+                    <div class="w-12 h-12 rounded-full bg-surface border border-primary flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-xl">verified</span>
+                    </div>
+                    <div>
+                        <h5 class="font-label-caps text-label-caps text-on-surface text-[10px] font-bold">3. Reservation Secured</h5>
+                        <p class="text-[12px] text-on-surface-variant mt-1">Booking finalized</p>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center text-center space-y-4 flex-1">
+                    <div class="w-12 h-12 rounded-full bg-surface border border-primary flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-xl">restaurant</span>
+                    </div>
+                    <div>
+                        <h5 class="font-label-caps text-label-caps text-on-surface text-[10px] font-bold">4. Royal Dining Experience</h5>
+                        <p class="text-[12px] text-on-surface-variant mt-1">Enjoy the gastronomy</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Decorative Info Section -->
+        <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-24 grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="scroll-reveal feature-card p-10 text-center group border border-primary/10 rounded-[32px] bg-surface/40">
+                <div class="w-16 h-16 mx-auto mb-6 rounded-full border border-primary/30 flex items-center justify-center bg-primary/5 transition-all duration-500">
+                    <span class="feature-icon material-symbols-outlined text-primary text-3xl transition-all duration-500" data-icon="restaurant">restaurant</span>
+                </div>
+                <h4 class="font-headline-sm text-headline-sm text-on-surface mb-2 font-bold">Curated Menus</h4>
+                <p class="font-body-md text-body-md text-on-surface-variant">Each table booking includes a personal consultation with our chef de cuisine for dietary alignment.</p>
+            </div>
+            <div class="scroll-reveal feature-card p-10 text-center group border border-primary/10 rounded-[32px] bg-surface/40">
+                <div class="w-16 h-16 mx-auto mb-6 rounded-full border border-primary/30 flex items-center justify-center bg-primary/5 transition-all duration-500">
+                    <span class="feature-icon material-symbols-outlined text-primary text-3xl transition-all duration-500" data-icon="history_edu">history_edu</span>
+                </div>
+                <h4 class="font-headline-sm text-headline-sm text-on-surface mb-2 font-bold">Heritage Service</h4>
+                <p class="font-body-md text-body-md text-on-surface-variant">Experience hospitality inspired by the royal kitchens of the coastal regions of India.</p>
+            </div>
+            <div class="scroll-reveal feature-card p-10 text-center group border border-primary/10 rounded-[32px] bg-surface/40">
+                <div class="w-16 h-16 mx-auto mb-6 rounded-full border border-primary/30 flex items-center justify-center bg-primary/5 transition-all duration-500">
+                    <span class="feature-icon material-symbols-outlined text-primary text-3xl transition-all duration-500" data-icon="auto_awesome">auto_awesome</span>
+                </div>
+                <h4 class="font-headline-sm text-headline-sm text-on-surface mb-2 font-bold">Private Ambiance</h4>
+                <p class="font-body-md text-body-md text-on-surface-variant">Intimate seating arrangements designed for privacy and focused culinary discovery.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="scroll-reveal w-full py-24 px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-3 gap-gutter bg-surface-container-lowest border-t border-primary/20">
+        <div class="space-y-stack-md">
+            <h3 class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-widest font-bold">The Coastal Tawa</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant max-w-xs leading-relaxed">
+                An exquisite passage to Awadhi heritage and coastal Indian cuisine. Savor ancient culinary secrets blended with luxurious fine-dining hospitality.
+            </p>
+        </div>
+        <div class="space-y-stack-md">
+            <h4 class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Dining Hours</h4>
+            <ul class="space-y-2 font-body-md text-body-md text-on-surface-variant">
+                <li>Lunch: 12:00 PM – 3:30 PM</li>
+                <li>Dinner: 7:00 PM – 11:30 PM</li>
+                <li>Open daily for royal dining.</li>
+            </ul>
+        </div>
+        <div class="space-y-stack-md">
+            <h4 class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Grand Palace Address</h4>
+            <ul class="space-y-2 font-body-md text-body-md text-on-surface-variant">
+                <li>Empire Ways Co Operative Housing Society</li>
+                <li>Junction, Eastern Express Hwy, Thane West, 400606</li>
+                <li>Phone: +91 22 5555 7777</li>
+                <li class="hover:text-primary transition-colors cursor-pointer">reservations@coastaltawa.com</li>
+            </ul>
+        </div>
+        <div class="col-span-1 md:col-span-3 pt-stack-lg mt-stack-lg border-t border-primary/10 flex flex-col md:flex-row justify-between items-center opacity-80 hover:opacity-100 transition-opacity">
+            <p class="font-body-md text-body-md text-on-surface-variant text-center md:text-left mb-4 md:mb-0">
+                © 2026 The Coastal Tawa Restaurant. All Rights Reserved. Crafted for Haute Indian Gastronomy.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Global Cart State script -->
+    <script src="cart.js"></script>
+
+    <!-- Custom Page Script -->
+    <script>
+        // Mobile Navigation Toggle
+        function toggleMobileNav() {
+            const nav = document.getElementById('mobile-nav');
+            if (nav.classList.contains('opacity-0')) {
+                nav.classList.remove('opacity-0', 'pointer-events-none');
+                nav.classList.add('opacity-100', 'pointer-events-auto');
+            } else {
+                nav.classList.add('opacity-0', 'pointer-events-none');
+                nav.classList.remove('opacity-100', 'pointer-events-auto');
+            }
+        }
+
+        // Form interaction with success state
+        document.getElementById('reservation-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const form = e.target;
+            const successState = document.getElementById('success-state');
+            
+            btn.innerText = 'Transmitting Request...';
+            btn.classList.add('opacity-50', 'pointer-events-none');
+            
+            setTimeout(() => {
+                form.classList.add('hidden');
+                successState.classList.remove('hidden');
+                successState.classList.add('flex');
+                
+                // Scroll to the top of the form container for visibility
+                successState.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 1500);
+        });
+
+        // Scroll reveal logic
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal, .reveal-up').forEach(el => observer.observe(el));
+
+        // For Select inputs to mimic :not(:placeholder-shown) logic
+        document.querySelectorAll('.floating-label-group select').forEach(select => {
+            select.addEventListener('change', () => {
+                if (select.value) {
+                    select.setAttribute('value', select.value);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
