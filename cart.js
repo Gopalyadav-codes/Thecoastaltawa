@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="material-symbols-outlined text-primary text-[28px]">shopping_bag</span>
                     <div>
                         <h2 class="font-headline-sm text-[20px] text-white-pure uppercase tracking-widest leading-none">Dining Tray</h2>
-                        <span class="text-[10px] text-primary uppercase tracking-widest font-bold">Gastronomy Selection</span>
+                        <span class="text-[10px] text-primary uppercase tracking-widest font-bold">Cuisine Selection</span>
                     </div>
                 </div>
                 <button class="material-symbols-outlined text-primary hover:text-white-pure hover:rotate-90 transition-all p-2 rounded-full" onclick="toggleCart()">close</button>
