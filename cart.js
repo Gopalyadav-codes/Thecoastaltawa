@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="flex items-center gap-3">
                     <span class="material-symbols-outlined text-primary text-[28px]">shopping_bag</span>
                     <div>
-                        <h2 class="font-headline-sm text-[20px] text-white-pure uppercase tracking-widest leading-none">Royal Tray</h2>
+                        <h2 class="font-headline-sm text-[20px] text-white-pure uppercase tracking-widest leading-none">Dining Tray</h2>
                         <span class="text-[10px] text-primary uppercase tracking-widest font-bold">Gastronomy Selection</span>
                     </div>
                 </div>
@@ -291,8 +291,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div id="cart-empty-state" class="hidden flex-col items-center justify-center text-center py-20" style="gap: 20px;">
                     <span class="material-symbols-outlined text-primary/30 text-[72px]" style="margin-bottom: 8px; display: block;">restaurant</span>
                     <div style="padding: 0 16px;">
-                        <h4 class="font-headline-sm text-white-pure" style="line-height: 1.4; display: block; font-size: 20px; letter-spacing: 0.05em;">Your Imperial Tray is Empty</h4>
-                        <p class="text-[13px] text-on-surface-variant max-w-[320px] mx-auto" style="line-height: 1.8; display: block; margin-top: 12px; opacity: 0.85;">Indulge in our exquisite selection of coastal Malvani curries and Awadhi royal delights.</p>
+                        <h4 class="font-headline-sm text-white-pure" style="line-height: 1.4; display: block; font-size: 20px; letter-spacing: 0.05em;">Your Dining Tray is Empty</h4>
+                        <p class="text-[13px] text-on-surface-variant max-w-[320px] mx-auto" style="line-height: 1.8; display: block; margin-top: 12px; opacity: 0.85;">Indulge in our exquisite selection of coastal Malvani curries and Awadhi specialty delights.</p>
                     </div>
                     <a href="menu.html" class="px-8 py-3.5 bg-primary text-on-primary font-label-caps text-[10px] tracking-widest uppercase rounded-full gold-glow-hover transition-all font-bold" style="display: inline-block; margin-top: 16px;" onclick="toggleCart()">Explore Menu</a>
                 </div>
@@ -302,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div id="cart-summary-section" class="border-t border-primary/20 p-6 bg-surface-container-lowest flex flex-col gap-4">
                 <!-- Promo Code -->
                 <div class="flex gap-2">
-                    <input type="text" id="promo-input" placeholder="Imperial Promo Code" class="flex-1 bg-background/50 border border-primary/20 focus:border-primary rounded-full px-5 py-3 text-sm text-white-pure placeholder:text-on-surface/30">
+                    <input type="text" id="promo-input" placeholder="Promo Code" class="flex-1 bg-background/50 border border-primary/20 focus:border-primary rounded-full px-5 py-3 text-sm text-white-pure placeholder:text-on-surface/30">
                     <button onclick="applyPromoCode()" class="px-6 py-3 bg-surface border border-primary/30 interactive-text hover:bg-primary hover:text-on-primary rounded-full font-label-caps text-[9px] tracking-widest uppercase transition-all font-bold">Apply</button>
                 </div>
                 <div id="promo-status-msg" class="text-[11px] font-bold px-2 hidden"></div>
@@ -318,11 +318,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span id="promo-discount">-₹0</span>
                     </div>
                     <div class="flex justify-between text-sm text-on-surface-variant">
-                        <span>Royal Service Charge (5%)</span>
+                        <span>Service Charge (5%)</span>
                         <span id="cart-service-charge">₹0</span>
                     </div>
                     <div class="flex justify-between text-sm text-on-surface-variant">
-                        <span>Royal GST (18%)</span>
+                        <span>GST (18%)</span>
                         <span id="cart-gst">₹0</span>
                     </div>
                 </div>
@@ -590,16 +590,16 @@ function applyPromoCode() {
 
     if(code === 'TAWA20') {
         activePromo = { code: 'TAWA20', value: 0.20 };
-        statusMsg.innerText = "Royal 20% discount coupon applied successfully!";
+        statusMsg.innerText = "Special 20% discount coupon applied successfully!";
         statusMsg.classList.add('text-secondary');
         statusMsg.classList.remove('hidden');
     } else if(code === 'ROYAL15') {
         activePromo = { code: 'ROYAL15', value: 0.15 };
-        statusMsg.innerText = "Royal 15% discount coupon applied successfully!";
+        statusMsg.innerText = "Special 15% discount coupon applied successfully!";
         statusMsg.classList.add('text-secondary');
         statusMsg.classList.remove('hidden');
     } else {
-        statusMsg.innerText = "Invalid imperial coupon code.";
+        statusMsg.innerText = "Invalid coupon code.";
         statusMsg.classList.add('text-red-400');
         statusMsg.classList.remove('hidden');
         activePromo = null;
@@ -677,7 +677,7 @@ function showCheckoutForm() {
             </button>
 
             <div>
-                <h3 class="font-headline-sm text-[22px] text-white-pure uppercase tracking-widest">Royal Checkout</h3>
+                <h3 class="font-headline-sm text-[22px] text-white-pure uppercase tracking-widest">Checkout</h3>
                 <p class="text-[11px] text-primary uppercase tracking-widest font-bold mt-1">Sum: ${grandSum}</p>
             </div>
 
@@ -687,16 +687,16 @@ function showCheckoutForm() {
                 <div class="flex flex-col gap-1.5">
                     <label class="font-label-caps text-[9px] text-primary tracking-widest uppercase font-bold px-1">Serving Protocol</label>
                     <select id="checkout-protocol" class="bg-background/60 border border-primary/20 focus:border-primary rounded-full px-5 py-3.5 text-xs text-white-pure appearance-none cursor-pointer" onchange="toggleCheckoutFields()">
-                        <option value="dinein">Imperial Dine-In (Table Service)</option>
-                        <option value="pickup">Palace Pickup (Self Service)</option>
-                        <option value="delivery">Royal Home Delivery (Chariot)</option>
+                        <option value="dinein">Dine-In (Table Service)</option>
+                        <option value="pickup">Self Pickup (Self Service)</option>
+                        <option value="delivery">Home Delivery (Standard)</option>
                     </select>
                 </div>
 
                 <!-- Full Name -->
                 <div class="flex flex-col gap-1.5">
                     <label class="font-label-caps text-[9px] text-primary tracking-widest uppercase font-bold px-1">Your Full Name</label>
-                    <input type="text" required id="checkout-name" placeholder="e.g. Maharaja Sawai" class="bg-background/60 border border-primary/20 focus:border-primary rounded-full px-5 py-3.5 text-xs text-white-pure">
+                    <input type="text" required id="checkout-name" placeholder="e.g. Aarav Sharma" class="bg-background/60 border border-primary/20 focus:border-primary rounded-full px-5 py-3.5 text-xs text-white-pure">
                 </div>
 
                 <!-- Contact Phone -->
@@ -717,7 +717,7 @@ function showCheckoutForm() {
                     <textarea id="checkout-notes" rows="3" placeholder="Occasion details, spice level requirements, or allergy remarks..." class="bg-background/60 border border-primary/20 focus:border-primary rounded-2xl px-5 py-4 text-xs text-white-pure resize-none"></textarea>
                 </div>
 
-                <button type="submit" class="mt-4 w-full py-5 bg-primary text-on-primary rounded-full font-label-caps text-[11px] tracking-[0.2em] uppercase font-bold gold-glow-hover btn-shimmer-gold">Transmit Royal Order</button>
+                <button type="submit" class="mt-4 w-full py-5 bg-primary text-on-primary rounded-full font-label-caps text-[11px] tracking-[0.2em] uppercase font-bold gold-glow-hover btn-shimmer-gold">Transmit Order</button>
             </form>
         </div>
         `;
@@ -758,7 +758,7 @@ function toggleCheckoutFields() {
         input.required = true;
     } else if(protocol === 'delivery') {
         group.style.display = 'flex';
-        label.innerText = "Royal Delivery Address";
+        label.innerText = "Delivery Address";
         input.placeholder = "Full address with landmark details...";
         input.required = true;
     } else {
@@ -783,11 +783,11 @@ function handleCheckoutSubmit(e) {
     const grandSum = document.getElementById('cart-grand-total').innerText;
     const orderId = `TCT-${Math.floor(100000 + Math.random() * 900000)}`;
 
-    let deliveryProtocolMsg = "Your chamber table is being prepared.";
+    let deliveryProtocolMsg = "Your table is being prepared.";
     if (protocol === 'delivery') {
-        deliveryProtocolMsg = "Our royal delivery chariot is being prepared to ride to your address.";
+        deliveryProtocolMsg = "Our delivery team is being prepared to ride to your address.";
     } else if (protocol === 'pickup') {
-        deliveryProtocolMsg = "Your royal package will be ready for pickup at our palace in 20 minutes.";
+        deliveryProtocolMsg = "Your package will be ready for pickup at our restaurant in 20 minutes.";
     }
 
     // Slide-out and display grand loading animation
@@ -799,7 +799,7 @@ function handleCheckoutSubmit(e) {
             <span class="material-symbols-outlined text-primary text-[64px] animate-spin">refresh</span>
             <div>
                 <h3 class="font-headline-sm text-[20px] text-white-pure uppercase tracking-widest leading-none">Transmitting Order</h3>
-                <p class="text-[10px] text-primary uppercase tracking-widest font-bold mt-2">Communicating with Palace Chefs...</p>
+                <p class="text-[10px] text-primary uppercase tracking-widest font-bold mt-2">Communicating with Kitchen Chefs...</p>
             </div>
         </div>
         `;
