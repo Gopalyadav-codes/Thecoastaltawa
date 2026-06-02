@@ -151,7 +151,7 @@ const cartStyles = `
     100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
 }
 
-/* --- PRESERVE BRANDING & OVERRIDE TYPOGRAPHY GOLD TO PREMIUM WHITE --- */
+/* --- PRESERVE BRANDING & OVERRIDE TYPOGRAPHY GOLD TO ROYAL WHITE --- */
 *:not(.material-symbols-outlined):not(a):not(button).text-primary,
 *:not(.material-symbols-outlined):not(a):not(button).text-royal-gold,
 *:not(.material-symbols-outlined):not(a):not(button).text-text-gold-subtle {
