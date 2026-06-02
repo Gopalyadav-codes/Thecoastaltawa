@@ -451,10 +451,10 @@ function renderCartItems() {
                 </div>
                 <!-- Quantity & Actions Control -->
                 <div class="flex justify-between items-center mt-3">
-                    <div class="flex items-center gap-3 bg-background/80 rounded-full px-3 py-1 border border-primary/10">
-                        <button class="interactive-text hover:scale-125 transition-transform font-bold text-xs" onclick="adjustItemQty('${item.name}', -1)">-</button>
-                        <span class="font-bold text-xs min-w-[1rem] text-center text-white-pure">${item.quantity}</span>
-                        <button class="interactive-text hover:scale-125 transition-transform font-bold text-xs" onclick="adjustItemQty('${item.name}', 1)">+</button>
+                    <div class="flex items-center bg-background/80 rounded-full p-0.5 border border-primary/10">
+                        <button class="w-6 h-6 rounded-full flex items-center justify-center interactive-text hover:bg-primary/10 active:scale-90 transition-all font-bold text-xs" onclick="adjustItemQty('${item.name}', -1)">-</button>
+                        <span class="font-bold text-xs min-w-[1.25rem] text-center text-white-pure">${item.quantity}</span>
+                        <button class="w-6 h-6 rounded-full flex items-center justify-center interactive-text hover:bg-primary/10 active:scale-90 transition-all font-bold text-xs" onclick="adjustItemQty('${item.name}', 1)">+</button>
                     </div>
                     <button onclick="removeFromCart('${item.name}')" class="text-on-surface-variant hover:text-red-400 transition-colors p-1 flex items-center justify-center rounded-full">
                         <span class="material-symbols-outlined text-[18px]">delete</span>
@@ -469,41 +469,49 @@ function renderCartItems() {
 }
 
 // Add Item from external triggers (e.g. Menu Page)
-function addToTawaCart(name, price, img = null) {
+function addToTawaCart(name, price, img = null, quantity = null) {
     // Find quantity from context if it exists (for menu items that have quantity selector counters)
     // Find closest menu item quantity selector
-    let quantity = 1;
-    const itemsOnPage = Array.from(document.querySelectorAll('.menu-item, .glass-card'));
-    const itemContext = itemsOnPage.find(el => {
-        const nameAttr = el.getAttribute('data-name');
-        return nameAttr && nameAttr.toLowerCase() === name.toLowerCase();
-    });
-    
-    if (itemContext) {
-        const qtyEl = itemContext.querySelector('.qty');
-        if (qtyEl) {
-            quantity = parseInt(qtyEl.innerText) || 1;
-            qtyEl.innerText = "1"; // Reset local page selector back to 1
+    let finalQuantity = 1;
+    if (quantity !== null) {
+        finalQuantity = quantity;
+    } else {
+        const itemsOnPage = Array.from(document.querySelectorAll('.menu-item, .glass-card'));
+        const itemContext = itemsOnPage.find(el => {
+            const nameAttr = el.getAttribute('data-name');
+            const hasQty = el.querySelector('.qty');
+            return nameAttr && nameAttr.toLowerCase() === name.toLowerCase() && hasQty;
+        }) || itemsOnPage.find(el => {
+            const nameAttr = el.getAttribute('data-name');
+            return nameAttr && nameAttr.toLowerCase() === name.toLowerCase();
+        });
+        
+        if (itemContext) {
+            const qtyEl = itemContext.querySelector('.qty');
+            if (qtyEl) {
+                finalQuantity = parseInt(qtyEl.innerText) || 1;
+                qtyEl.innerText = "1"; // Reset local page selector back to 1
+            }
         }
     }
 
     const existingIndex = tawaCart.findIndex(item => item.name.toLowerCase() === name.toLowerCase());
     
     if(existingIndex > -1) {
-        tawaCart[existingIndex].quantity += quantity;
+        tawaCart[existingIndex].quantity += finalQuantity;
     } else {
         tawaCart.push({
             name: name,
             price: price,
             image: img,
-            quantity: quantity
+            quantity: finalQuantity
         });
     }
 
     // Save and Sync
     localStorage.setItem('tawaCart', JSON.stringify(tawaCart));
     updateBadges();
-    showTawaToast(`${quantity}x ${name.toUpperCase()} ADDED`);
+    showTawaToast(`${finalQuantity}x ${name.toUpperCase()} ADDED`);
     
     // Particle/Spark feedback effect on target button
     triggerButtonSparks();
