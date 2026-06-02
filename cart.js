@@ -1181,15 +1181,18 @@ function initCustomCursor() {
             const dx = targetPlateX - plateX;
             const dy = targetPlateY - plateY;
 
-            plateX += dx * 0.08;
-            plateY += dy * 0.08;
+            // Dynamic physics: Easing slows down at higher speeds/distances to simulate weight/inertia
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const currentEasing = Math.max(0.03, 0.08 - dist * 0.00015);
+
+            plateX += dx * currentEasing;
+            plateY += dy * currentEasing;
 
             // Enforce constraints:
-            // Horizontal offset: 25px to 40px LEFT of the fork
-            plateX = Math.max(forkX - 40, Math.min(plateX, forkX - 25));
-            
-            // Vertical offset: 70px to 100px BELOW the fork
-            plateY = Math.min(forkY + 100, Math.max(plateY, forkY + 70));
+            // Minimum offset is strictly preserved (25px left, 70px below) to prevent overlap.
+            // Maximum offset is expanded (160px left, 220px below) to allow natural speed-based trailing separation.
+            plateX = Math.max(forkX - 160, Math.min(plateX, forkX - 25));
+            plateY = Math.min(forkY + 220, Math.max(plateY, forkY + 70));
 
             // Subtle rotation leaning into direction of movement
             const targetAngle = Math.max(-12, Math.min(12, dx * 0.25));
