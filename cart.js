@@ -1142,8 +1142,8 @@ function initCustomCursor() {
             plate.style.opacity = '1';
             forkX = mouseX;
             forkY = mouseY;
-            plateX = mouseX - 40;
-            plateY = mouseY + 40;
+            plateX = mouseX - 35;
+            plateY = mouseY + 85;
         }
     });
 
@@ -1171,10 +1171,10 @@ function initCustomCursor() {
             forkY = mouseY;
 
             // Plate follower follows with delay, a fixed offset, and float animation
-            const targetPlateX = mouseX - 40;
+            const targetPlateX = mouseX - 35;
             floatTimer += 0.04;
             const floatOffset = Math.sin(floatTimer) * 2.5;
-            const targetPlateY = mouseY + 40 + floatOffset;
+            const targetPlateY = mouseY + 85 + floatOffset;
 
             const dx = targetPlateX - plateX;
             const dy = targetPlateY - plateY;
@@ -1183,11 +1183,11 @@ function initCustomCursor() {
             plateY += dy * 0.08;
 
             // Enforce constraints:
-            // Horizontal offset: 30px to 45px LEFT of the fork
-            plateX = Math.max(forkX - 45, Math.min(plateX, forkX - 30));
+            // Horizontal offset: 25px to 40px LEFT of the fork
+            plateX = Math.max(forkX - 40, Math.min(plateX, forkX - 25));
             
-            // Vertical offset: 35px to 50px BELOW the fork
-            plateY = Math.min(forkY + 50, Math.max(plateY, forkY + 35));
+            // Vertical offset: 70px to 100px BELOW the fork
+            plateY = Math.min(forkY + 100, Math.max(plateY, forkY + 70));
 
             // Subtle rotation leaning into direction of movement
             const targetAngle = Math.max(-12, Math.min(12, dx * 0.25));
