@@ -1171,10 +1171,12 @@ function initCustomCursor() {
             forkY = mouseY;
 
             // Plate follower follows with delay, a fixed offset, and float animation
-            const targetPlateX = mouseX - 35;
-            floatTimer += 0.04;
-            const floatOffset = Math.sin(floatTimer) * 2.5;
-            const targetPlateY = mouseY + 85 + floatOffset;
+            floatTimer += 0.035; // ~3 second cycle at 60fps
+            const floatX = Math.cos(floatTimer * 0.7) * 2.0; // Horizontal drift (range 4px)
+            const floatY = Math.sin(floatTimer) * 4.5; // Vertical bobbing (range 9px)
+            
+            const targetPlateX = mouseX - 35 + floatX;
+            const targetPlateY = mouseY + 85 + floatY;
 
             const dx = targetPlateX - plateX;
             const dy = targetPlateY - plateY;
