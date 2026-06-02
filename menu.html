@@ -185,26 +185,26 @@
 
         /* --- ORBITAL SHAPES & ANIMATIONS --- */
         :root {
-            --orbit-radius: 280px;
+            --orbit-radius: 330px;
             --orbit-duration: 60s;
         }
         @media (max-width: 1024px) {
             :root {
-                --orbit-radius: 210px;
+                --orbit-radius: 250px;
             }
         }
         @media (max-width: 767px) {
             :root {
-                --orbit-radius: 120px;
+                --orbit-radius: 140px;
             }
         }
 
         .orbital-hero {
             position: relative;
             width: 100%;
-            height: 100vh;
-            min-height: 850px;
-            max-height: 1000px;
+            height: 110vh;
+            min-height: 1050px;
+            max-height: 1200px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -216,15 +216,17 @@
         }
         @media (max-width: 1024px) {
             .orbital-hero {
-                min-height: 750px;
-                padding-top: 120px;
-                padding-bottom: 60px;
+                height: auto;
+                min-height: 900px;
+                max-height: none;
+                padding-top: 130px;
+                padding-bottom: 70px;
             }
         }
         @media (max-width: 767px) {
             .orbital-hero {
                 height: auto;
-                min-height: 580px;
+                min-height: 660px;
                 max-height: none;
                 padding-top: 100px;
                 padding-bottom: 80px;
@@ -234,22 +236,22 @@
         .orbital-system {
             position: relative;
             width: 100%;
-            max-width: 750px;
-            height: 750px;
+            max-width: 880px;
+            height: 880px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         @media (max-width: 1024px) {
             .orbital-system {
-                max-width: 600px;
-                height: 600px;
+                max-width: 700px;
+                height: 700px;
             }
         }
         @media (max-width: 767px) {
             .orbital-system {
-                max-width: 380px;
-                height: 380px;
+                max-width: 440px;
+                height: 440px;
             }
         }
 
@@ -310,6 +312,11 @@
             left: 50%;
             transform: translate(-50%, -50%) rotate(var(--angle)) translate(var(--orbit-radius));
             z-index: 10;
+        }
+
+        .dish-node:hover,
+        .dish-node.node-active {
+            z-index: 100 !important;
         }
 
         .dish-node-inner {
@@ -1366,10 +1373,13 @@
                 
                 // Close all nodes first
                 dishNodes.forEach(n => n.classList.remove('expanded'));
+                document.querySelectorAll('.dish-node').forEach(n => n.classList.remove('node-active'));
                 if (orbitContainer) orbitContainer.classList.remove('rotation-paused');
                 
                 if (!isExpanded) {
                     node.classList.add('expanded');
+                    const parentNode = node.closest('.dish-node');
+                    if (parentNode) parentNode.classList.add('node-active');
                     if (orbitContainer) orbitContainer.classList.add('rotation-paused');
                 }
                 
@@ -1381,6 +1391,7 @@
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.dish-node-card')) {
                 dishNodes.forEach(n => n.classList.remove('expanded'));
+                document.querySelectorAll('.dish-node').forEach(n => n.classList.remove('node-active'));
                 if (orbitContainer) orbitContainer.classList.remove('rotation-paused');
             }
         });
