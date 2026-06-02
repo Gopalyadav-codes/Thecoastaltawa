@@ -257,6 +257,49 @@ const cartStyles = `
         height: 40px;
     }
 }
+
+/* Custom Cursor styles */
+@media (min-width: 1024px) and (pointer: fine) {
+    html, body, a, button, [role="button"], select, input, textarea, label {
+        cursor: none !important;
+    }
+    
+    #custom-cursor-fork, #custom-cursor-plate {
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 999999;
+        will-change: transform;
+        display: block;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    #custom-cursor-fork {
+        width: 24px;
+        height: 48px;
+        transform-origin: 50% 0%; /* Scale relative to tip of the fork */
+    }
+    
+    #custom-cursor-plate {
+        width: 32px;
+        height: 32px;
+        transform-origin: center;
+    }
+    
+    #custom-cursor-fork img, #custom-cursor-plate img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+@media (max-width: 1023px), (pointer: coarse) {
+    #custom-cursor-fork, #custom-cursor-plate {
+        display: none !important;
+    }
+}
 `;
 
 // Inject Markup and Styles once DOM is ready
@@ -368,6 +411,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize Intro Video Overlay after cart elements are active
     initTawaVideoOverlay();
+
+    // Initialize custom mouse cursor experience (Fork & Plate follower)
+    initCustomCursor();
 });
 
 // Update Header Cart Badges & Persistent Totals
@@ -1052,4 +1098,111 @@ window.completeTawaOrder = completeTawaOrder;
 window.hideTawaVideo = hideTawaVideo;
 window.toggleTawaVideoVolume = toggleTawaVideoVolume;
 window.playTawaVideo = playTawaVideo;
+
+// Custom Mouse Cursor (Fork & Plate follower)
+function initCustomCursor() {
+    // Only run on desktop screens (>= 1024px) and fine pointer
+    if (window.innerWidth < 1024 || !window.matchMedia('(pointer: fine)').matches) {
+        return;
+    }
+
+    const fork = document.createElement('div');
+    fork.id = 'custom-cursor-fork';
+    fork.innerHTML = `<img src="fork.png" alt="Fork Cursor">`;
+
+    const plate = document.createElement('div');
+    plate.id = 'custom-cursor-plate';
+    plate.innerHTML = `<img src="plate.png" alt="Plate Follower">`;
+
+    document.body.appendChild(fork);
+    document.body.appendChild(plate);
+
+    let mouseX = -100;
+    let mouseY = -100;
+    let forkX = -100;
+    let forkY = -100;
+    let plateX = -100;
+    let plateY = -100;
+    
+    let forkScale = 1;
+    let plateScale = 1;
+    let plateAngle = 0;
+    
+    let isHovering = false;
+    let cursorInitialized = false;
+    let floatTimer = 0;
+
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        if (!cursorInitialized) {
+            cursorInitialized = true;
+            fork.style.opacity = '1';
+            plate.style.opacity = '1';
+            forkX = mouseX;
+            forkY = mouseY;
+            plateX = mouseX;
+            plateY = mouseY + 24;
+        }
+    });
+
+    // Detect hovers on interactive elements using event delegation
+    document.addEventListener('mouseover', (e) => {
+        const interactive = e.target.closest('a, button, [role="button"], input, select, textarea, .shimmer-btn, .glass-card, .dish-node-card');
+        isHovering = !!interactive;
+    });
+
+    document.addEventListener('mouseout', () => {
+        isHovering = false;
+    });
+
+    // Hide custom cursor when mouse leaves the viewport
+    document.addEventListener('mouseleave', () => {
+        fork.style.opacity = '0';
+        plate.style.opacity = '0';
+        cursorInitialized = false;
+    });
+
+    function updateCursor() {
+        if (cursorInitialized) {
+            // Fork follows instantly
+            forkX = mouseX;
+            forkY = mouseY;
+
+            // Plate follower follows with delay and float animation
+            const targetPlateX = mouseX;
+            floatTimer += 0.04;
+            const floatOffset = Math.sin(floatTimer) * 2.5;
+            const targetPlateY = mouseY + 24 + floatOffset;
+
+            const dx = targetPlateX - plateX;
+            const dy = targetPlateY - plateY;
+
+            plateX += dx * 0.08;
+            plateY += dy * 0.08;
+
+            // Subtle rotation leaning into direction of movement
+            const targetAngle = Math.max(-12, Math.min(12, dx * 0.25));
+            plateAngle += (targetAngle - plateAngle) * 0.08;
+
+            // Scale factor for hovers
+            const targetScale = isHovering ? 1.08 : 1.0;
+            forkScale += (targetScale - forkScale) * 0.15;
+            plateScale += (targetScale - plateScale) * 0.15;
+
+            // GPU Accelerated transforms
+            // Fork hotspot is at the tip: top-center (width is 24px)
+            fork.style.transform = `translate3d(${forkX - 12}px, ${forkY}px, 0) scale(${forkScale})`;
+            
+            // Plate hotspot is at the center (width/height is 32px)
+            plate.style.transform = `translate3d(${plateX - 16}px, ${plateY - 16}px, 0) scale(${plateScale}) rotate(${plateAngle}deg)`;
+        }
+
+        requestAnimationFrame(updateCursor);
+    }
+
+    requestAnimationFrame(updateCursor);
+}
+
 
