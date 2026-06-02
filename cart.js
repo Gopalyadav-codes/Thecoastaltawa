@@ -1142,8 +1142,8 @@ function initCustomCursor() {
             plate.style.opacity = '1';
             forkX = mouseX;
             forkY = mouseY;
-            plateX = mouseX;
-            plateY = mouseY + 24;
+            plateX = mouseX + 20;
+            plateY = mouseY + 12;
         }
     });
 
@@ -1170,11 +1170,11 @@ function initCustomCursor() {
             forkX = mouseX;
             forkY = mouseY;
 
-            // Plate follower follows with delay and float animation
-            const targetPlateX = mouseX;
+            // Plate follower follows with delay, a fixed offset, and float animation
+            const targetPlateX = mouseX + 20;
             floatTimer += 0.04;
             const floatOffset = Math.sin(floatTimer) * 2.5;
-            const targetPlateY = mouseY + 24 + floatOffset;
+            const targetPlateY = mouseY + 12 + floatOffset;
 
             const dx = targetPlateX - plateX;
             const dy = targetPlateY - plateY;
