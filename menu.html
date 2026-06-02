@@ -182,6 +182,369 @@
         button.text-primary:not(.material-symbols-outlined):active {
             color: #C9A227 !important;
         }
+
+        /* --- ORBITAL SHAPES & ANIMATIONS --- */
+        :root {
+            --orbit-radius: 280px;
+            --orbit-duration: 60s;
+        }
+        @media (max-width: 1024px) {
+            :root {
+                --orbit-radius: 210px;
+            }
+        }
+        @media (max-width: 767px) {
+            :root {
+                --orbit-radius: 120px;
+            }
+        }
+
+        .orbital-hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 850px;
+            max-height: 1000px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #2B0E11 0%, #1F0507 60%, #120203 100%);
+            padding-top: 140px;
+            padding-bottom: 80px;
+        }
+        @media (max-width: 1024px) {
+            .orbital-hero {
+                min-height: 750px;
+                padding-top: 120px;
+                padding-bottom: 60px;
+            }
+        }
+        @media (max-width: 767px) {
+            .orbital-hero {
+                height: auto;
+                min-height: 580px;
+                max-height: none;
+                padding-top: 100px;
+                padding-bottom: 80px;
+            }
+        }
+
+        .orbital-system {
+            position: relative;
+            width: 100%;
+            max-width: 750px;
+            height: 750px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @media (max-width: 1024px) {
+            .orbital-system {
+                max-width: 600px;
+                height: 600px;
+            }
+        }
+        @media (max-width: 767px) {
+            .orbital-system {
+                max-width: 380px;
+                height: 380px;
+            }
+        }
+
+        /* Decorative Rings */
+        .orbit-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .ring-outer {
+            width: calc(2 * var(--orbit-radius));
+            height: calc(2 * var(--orbit-radius));
+            border: 1px dashed rgba(212, 175, 55, 0.18);
+        }
+        .ring-middle {
+            width: calc(2 * var(--orbit-radius) - 80px);
+            height: calc(2 * var(--orbit-radius) - 80px);
+            border: 1px solid rgba(212, 175, 55, 0.08);
+        }
+        .ring-inner {
+            width: calc(2 * var(--orbit-radius) - 160px);
+            height: calc(2 * var(--orbit-radius) - 160px);
+            border: 1px dashed rgba(212, 175, 55, 0.05);
+        }
+
+        /* Orbit Container */
+        .orbit-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: spin var(--orbit-duration) linear infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .orbit-container.rotation-paused,
+        .orbit-container.rotation-paused .dish-node-inner {
+            animation-play-state: paused !important;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes spin-reverse {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+
+        /* Dish Nodes */
+        .dish-node {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(var(--angle)) translate(var(--orbit-radius));
+            z-index: 10;
+        }
+
+        .dish-node-inner {
+            animation: spin-reverse var(--orbit-duration) linear infinite;
+        }
+
+        .static-counter {
+            transform: rotate(calc(-1 * var(--angle)));
+        }
+
+        /* Node Cards */
+        .dish-node-card {
+            width: 170px;
+            background: rgba(43, 14, 17, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 1.5rem;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+            cursor: pointer;
+        }
+
+        @media (hover: hover) {
+            .orbit-container:hover,
+            .orbit-container:hover .dish-node-inner {
+                animation-play-state: paused;
+            }
+            .dish-node-card:hover {
+                transform: scale(1.15) translateY(-8px);
+                background: rgba(43, 14, 17, 0.98);
+                border-color: rgba(212, 175, 55, 0.6);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(212, 175, 55, 0.25);
+                z-index: 50;
+            }
+            .dish-node-card:hover img {
+                transform: scale(1.1);
+            }
+            .dish-node-card:hover .detail-section {
+                max-height: 200px;
+                opacity: 1;
+                margin-top: 8px;
+                visibility: visible;
+            }
+        }
+
+        /* Detail section hidden by default */
+        .dish-node-card .detail-section {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* Special Badge */
+        .special-badge {
+            position: absolute;
+            top: -8px;
+            right: 12px;
+            background: #D4AF37;
+            color: #1F0507;
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+            z-index: 5;
+        }
+
+        /* Center Orb Style */
+        .center-orb-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 210px;
+            height: 210px;
+            border-radius: 50%;
+            background: rgba(43, 14, 17, 0.9);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 2px solid rgba(212, 175, 55, 0.35);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.15), inset 0 0 25px rgba(212, 175, 55, 0.1);
+            z-index: 20;
+            padding: 20px;
+        }
+        @media (max-width: 1024px) {
+            .center-orb-container {
+                width: 170px;
+                height: 170px;
+                padding: 15px;
+            }
+        }
+        @media (max-width: 767px) {
+            .center-orb-container {
+                width: 120px;
+                height: 120px;
+                padding: 10px;
+            }
+        }
+
+        .center-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, rgba(212,175,55,0) 70%);
+            animation: pulse 4s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 19;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+            50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+        }
+
+        /* Mobile specific layout */
+        @media (max-width: 767px) {
+            .dish-node-card {
+                width: 76px;
+                height: 76px;
+                border-radius: 50%;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                border: 2px solid rgba(212, 175, 55, 0.35);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+                background: rgba(43, 14, 17, 0.95);
+            }
+            .dish-node-card .food-img-container {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                margin-bottom: 0 !important;
+                border: none !important;
+            }
+            .dish-node-card .dish-title {
+                position: absolute;
+                bottom: -22px;
+                font-size: 9px;
+                white-space: nowrap;
+                width: 90px;
+                text-align: center;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                color: #F2E8DF;
+                font-family: 'Manrope', sans-serif;
+                font-weight: 500;
+                text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+            }
+            .dish-node-card .dish-category,
+            .dish-node-card .dish-price,
+            .dish-node-card .special-badge {
+                display: none;
+            }
+            .dish-node-card .detail-section {
+                display: none;
+            }
+
+            /* Expanded Mobile Card overlay */
+            .dish-node-card.expanded {
+                width: 210px;
+                height: auto;
+                border-radius: 1.5rem;
+                padding: 16px;
+                background: rgba(27, 6, 8, 0.98) !important;
+                border: 1px solid rgba(212, 175, 55, 0.6);
+                box-shadow: 0 15px 35px rgba(0,0,0,0.9), 0 0 25px rgba(212,175,55,0.3);
+                position: absolute;
+                transform: scale(1.1) !important;
+                z-index: 100;
+                display: block;
+            }
+            .dish-node-card.expanded .food-img-container {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                margin: 0 auto 10px auto !important;
+                border: 2px solid #D4AF37 !important;
+                overflow: hidden;
+            }
+            .dish-node-card.expanded .dish-title {
+                position: static;
+                font-size: 15px;
+                font-family: 'Playfair Display', serif;
+                font-style: italic;
+                white-space: normal;
+                width: auto;
+                margin-bottom: 2px;
+                text-shadow: none;
+            }
+            .dish-node-card.expanded .dish-category {
+                display: block;
+                font-size: 9px;
+                color: #D4AF37;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                margin-bottom: 6px;
+            }
+            .dish-node-card.expanded .dish-price {
+                display: block;
+                font-size: 14px;
+                font-weight: bold;
+                color: #D4AF37;
+                margin-bottom: 8px;
+            }
+            .dish-node-card.expanded .detail-section {
+                display: flex;
+                flex-direction: column;
+                opacity: 1;
+                max-height: 180px;
+                visibility: visible;
+            }
+            .dish-node-card.expanded .special-badge {
+                display: block;
+                top: -6px;
+                right: 8px;
+            }
+        }
     </style>
 </head>
 <body class="bg-background text-on-surface font-body-md overflow-x-hidden">
@@ -226,17 +589,224 @@
         <a href="contact.html" class="font-headline-md text-2xl interactive-text uppercase tracking-widest" onclick="toggleMobileNav()">Contact</a>
     </div>
 
-    <!-- Hero Section -->
-    <header class="relative pt-40 pb-10 px-margin-mobile md:px-margin-desktop text-center bg-gradient-to-b from-background to-surface-container-lowest">
-        <div class="z-10 max-w-4xl mx-auto reveal-on-scroll">
-            <p class="font-label-caps text-[12px] text-primary tracking-[0.5em] mb-4 uppercase">MULTI-CUISINE • FAMILY DINING • FRESH FLAVOURS</p>
-            <h1 class="font-display-lg text-[48px] md:text-[84px] text-on-surface mb-6 uppercase tracking-tight leading-[1.1]">
-                Our <br/><span class="italic text-primary font-light">Menu</span>
-            </h1>
-            <div class="w-16 h-px bg-primary/40 mx-auto mb-8"></div>
-            <p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto italic">
-                Explore a wide selection of North Indian, Chinese, Italian, Mughlai, Biryani, Kebabs, Desserts, and more, prepared with quality ingredients and authentic flavours.
-            </p>
+    <!-- Interactive Orbital Dish Showcase Hero -->
+    <header class="orbital-hero">
+        <!-- Pulse background effect -->
+        <div class="center-glow"></div>
+        
+        <div class="orbital-system select-none">
+            <!-- Decorative concentric paths -->
+            <div class="orbit-ring ring-outer"></div>
+            <div class="orbit-ring ring-middle"></div>
+            <div class="orbit-ring ring-inner"></div>
+
+            <!-- Central Branding Orb -->
+            <div class="center-orb-container">
+                <div>
+                    <p class="text-[9px] md:text-[10px] tracking-[0.4em] text-primary/80 uppercase font-label-caps mb-1 md:mb-2">THE TAWA</p>
+                    <h2 class="font-display-lg text-[14px] md:text-[20px] text-on-surface uppercase tracking-[0.15em] font-bold leading-tight">
+                        CHEF'S SIGNATURE
+                    </h2>
+                    <h3 class="font-display-lg italic text-[16px] md:text-[24px] text-primary font-light -mt-0.5 md:-mt-1">
+                        Collection
+                    </h3>
+                    <div class="w-8 h-[1px] bg-primary/30 mx-auto my-2 md:my-3"></div>
+                    <p class="text-[8px] md:text-[9px] tracking-[0.25em] text-on-surface-variant uppercase font-label-caps">
+                        Fine Dining
+                    </p>
+                </div>
+            </div>
+
+            <!-- Rotating Orbit Container -->
+            <div class="orbit-container">
+                
+                <!-- Dish 1: Royal Tawa Thali -->
+                <div class="dish-node" style="--angle: 0deg;">
+                    <div class="dish-node-inner">
+                        <div class="static-counter">
+                            <div class="dish-node-card menu-item" data-name="royal tawa thali">
+                                <span class="special-badge">CHEF'S SPECIAL</span>
+                                <div class="food-img-container w-20 h-20 rounded-full overflow-hidden border-2 border-primary/30 mx-auto mb-2 transition-transform duration-500">
+                                    <img alt="Royal Tawa Thali" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=600&q=80"/>
+                                </div>
+                                <h4 class="dish-title font-headline-sm text-[13px] text-on-surface italic leading-tight">Royal Tawa Thali</h4>
+                                <p class="dish-category text-[8px] text-primary tracking-wider uppercase font-bold mt-0.5">Combos</p>
+                                <div class="detail-section mt-2 space-y-2">
+                                    <p class="text-[10px] text-on-surface-variant italic leading-normal">
+                                        A grand selection of five coastal and traditional delicacies, served with fresh breads, rice, and traditional sweets.
+                                    </p>
+                                    <span class="dish-price text-primary font-bold text-[13px] block">₹720</span>
+                                    <button class="shimmer-btn bg-primary text-background text-[8px] tracking-widest font-label-caps font-bold py-1.5 px-4 rounded-full uppercase hover:brightness-110 w-full transition-all" onclick="addToCart('Royal Tawa Thali', 720, this)">Add To Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dish 2: Ocean Bounty Combo -->
+                <div class="dish-node" style="--angle: 45deg;">
+                    <div class="dish-node-inner">
+                        <div class="static-counter">
+                            <div class="dish-node-card menu-item" data-name="ocean bounty combo">
+                                <span class="special-badge">CHEF'S SPECIAL</span>
+                                <div class="food-img-container w-20 h-20 rounded-full overflow-hidden border-2 border-primary/30 mx-auto mb-2 transition-transform duration-500">
+                                    <img alt="Ocean Bounty Combo" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80"/>
+                                </div>
+                                <h4 class="dish-title font-headline-sm text-[13px] text-on-surface italic leading-tight">Ocean Bounty Combo</h4>
+                                <p class="dish-category text-[8px] text-primary tracking-wider uppercase font-bold mt-0.5">Combos</p>
+                                <div class="detail-section mt-2 space-y-2">
+                                    <p class="text-[10px] text-on-surface-variant italic leading-normal">
+                                        A curated tribute to the Malvani coast featuring the catch of the day, simmered in a velvet coconut reduction with hand-pounded spices.
+                                    </p>
+                                    <span class="dish-price text-primary font-bold text-[13px] block">₹580</span>
+                                    <button class="shimmer-btn bg-primary text-background text-[8px] tracking-widest font-label-caps font-bold py-1.5 px-4 rounded-full uppercase hover:brightness-110 w-full transition-all" onclick="addToCart('Ocean Bounty Combo', 580, this)">Add To Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dish 3: Malvani Chicken Roast -->
+                <div class="dish-node" style="--angle: 90deg;">
+                    <div class="dish-node-inner">
+                        <div class="static-counter">
+                            <div class="dish-node-card menu-item" data-name="malvani chicken roast">
+                                <span class="special-badge">POPULAR</span>
+                                <div class="food-img-container w-20 h-20 rounded-full overflow-hidden border-2 border-primary/30 mx-auto mb-2 transition-transform duration-500">
+                                    <img alt="Malvani Chicken Roast" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=600&q=80"/>
+                                </div>
+                                <h4 class="dish-title font-headline-sm text-[13px] text-on-surface italic leading-tight">Malvani Chicken Roast</h4>
+                                <p class="dish-category text-[8px] text-primary tracking-wider uppercase font-bold mt-0.5">Starters</p>
+                                <div class="detail-section mt-2 space-y-2">
+                                    <p class="text-[10px] text-on-surface-variant italic leading-normal">
+                                        Tender chicken slow-cooked in spicy coconut masala, roasted with traditional Malvani spices and curry leaves.
+                                    </p>
+                                    <span class="dish-price text-primary font-bold text-[13px] block">₹520</span>
+                                    <button class="shimmer-btn bg-primary text-background text-[8px] tracking-widest font-label-caps font-bold py-1.5 px-4 rounded-full uppercase hover:brightness-110 w-full transition-all" onclick="addToCart('Malvani Chicken Roast', 520, this)">Add To Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dish 4: Coastal Fried Fish -->
+                <div class="dish-node" style="--angle: 135deg;">
+                    <div class="dish-node-inner">
+                        <div class="static-counter">
+                            <div class="dish-node-card menu-item" data-name="coastal fried fish">
+                                <div class="food-img-container w-20 h-20 rounded-full overflow-hidden border-2 border-primary/30 mx-auto mb-2 transition-transform duration-500">
+                                    <img alt="Coastal Fried Fish" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80"/>
+                                </div>
+                                <h4 class="dish-title font-headline-sm text-[13px] text-on-surface italic leading-tight">Coastal Fried Fish</h4>
+                                <p class="dish-category text-[8px] text-primary tracking-wider uppercase font-bold mt-0.5">Starters</p>
+                                <div class="detail-section mt-2 space-y-2">
+                                    <p class="text-[10px] text-on-surface-variant italic leading-normal">
+                                        Fresh catch of the day marinated in traditional spices, coated with golden semolina and pan-fried crisp.
+                                    </p>
+                                    <span class="dish-price text-primary font-bold text-[13px] block">₹620</span>
+                                    <button class="shimmer-btn bg-primary text-background text-[8px] tracking-widest font-label-caps font-bold py-1.5 px-4 rounded-full uppercase hover:brightness-110 w-full transition-all" onclick="addToCart('Coastal Fried Fish', 620, this)">Add To Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dish 5: Pesto Paneer Tikka -->
+                <div class="dish-node" style="--angle: 180deg;">
+                    <div class="dish-node-inner">
+                        <div class="static-counter">
+                            <div class="dish-node-card menu-item" data-name="pesto paneer tikka">
+                                <div class="food-img-container w-20 h-20 rounded-full overflow-hidden border-2 border-primary/30 mx-auto mb-2 transition-transform duration-500">
+                                    <img alt="Pesto Paneer Tikka" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaHpl0EcgVFbghwwZUr0agMsPre-FXmTaGdrahcscfIRFVKNUuLeTbbzqLEWjpPZgJ3Sd5_x4dcB4oexf_KjI8Z2ABmtpGarhwYiWat2G60yyhYXNwxBcM84bc_p2IUSc1Gc01HYdVVIY2RhNEoiqGlXuK08dHOUzK--v7EIfmwPwldrNRT8WKqkVd9_sYPGRRK9DMQqUm56cm2v41I_fSPehrE4455K_qY4TMBaPxalYdZXsD83TNXRbKYLyw-LB5y0ziZXvDJIVQ"/>
+                                </div>
+                                <h4 class="dish-title font-headline-sm text-[13px] text-on-surface italic leading-tight">Pesto Paneer Tikka</h4>
+                                <p class="dish-category text-[8px] text-primary tracking-wider uppercase font-bold mt-0.5">Starters</p>
+                                <div class="detail-section mt-2 space-y-2">
+                                    <p class="text-[10px] text-on-surface-variant italic leading-normal">
+                                        Artisan cottage cheese marinated in a fusion of pine nut pesto and yellow chili spices, grilled to perfection.
+                                    </p>
+                                    <span class="dish-price text-primary font-bold text-[13px] block">₹420</span>
+                                    <button class="shimmer-btn bg-primary text-background text-[8px] tracking-widest font-label-caps font-bold py-1.5 px-4 rounded-full uppercase hover:brightness-110 w-full transition-all" onclick="addToCart('Pesto Paneer Tikka', 420, this)">Add To Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dish 6: Jeera Paneer Rice Bowl -->
+                <div class="dish-node" style="--angle: 225deg;">
+                    <div class="dish-node-inner">
+                        <div class="static-counter">
+                            <div class="dish-node-card menu-item" data-name="jeera paneer rice bowl">
+                                <div class="food-img-container w-20 h-20 rounded-full overflow-hidden border-2 border-primary/30 mx-auto mb-2 transition-transform duration-500">
+                                    <img alt="Jeera Paneer Rice Bowl" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80"/>
+                                </div>
+                                <h4 class="dish-title font-headline-sm text-[13px] text-on-surface italic leading-tight">Jeera Paneer Rice</h4>
+                                <p class="dish-category text-[8px] text-primary tracking-wider uppercase font-bold mt-0.5">Breads & Rice</p>
+                                <div class="detail-section mt-2 space-y-2">
+                                    <p class="text-[10px] text-on-surface-variant italic leading-normal">
+                                        Fragrant cumin-tempered basmati rice layered with rich, spiced cottage cheese cubes and fresh coriander.
+                                    </p>
+                                    <span class="dish-price text-primary font-bold text-[13px] block">₹380</span>
+                                    <button class="shimmer-btn bg-primary text-background text-[8px] tracking-widest font-label-caps font-bold py-1.5 px-4 rounded-full uppercase hover:brightness-110 w-full transition-all" onclick="addToCart('Jeera Paneer Rice Bowl', 380, this)">Add To Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dish 7: Veg Manchow Soup -->
+                <div class="dish-node" style="--angle: 270deg;">
+                    <div class="dish-node-inner">
+                        <div class="static-counter">
+                            <div class="dish-node-card menu-item" data-name="veg manchow soup">
+                                <div class="food-img-container w-20 h-20 rounded-full overflow-hidden border-2 border-primary/30 mx-auto mb-2 transition-transform duration-500">
+                                    <img alt="Veg Manchow Soup" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1547592165-e1d17f97a15a?auto=format&fit=crop&w=600&q=80"/>
+                                </div>
+                                <h4 class="dish-title font-headline-sm text-[13px] text-on-surface italic leading-tight">Veg Manchow Soup</h4>
+                                <p class="dish-category text-[8px] text-primary tracking-wider uppercase font-bold mt-0.5">Soups</p>
+                                <div class="detail-section mt-2 space-y-2">
+                                    <p class="text-[10px] text-on-surface-variant italic leading-normal">
+                                        A fiery Indo-Chinese classic with finely diced farm vegetables and crispy golden noodles.
+                                    </p>
+                                    <span class="dish-price text-primary font-bold text-[13px] block">₹265</span>
+                                    <button class="shimmer-btn bg-primary text-background text-[8px] tracking-widest font-label-caps font-bold py-1.5 px-4 rounded-full uppercase hover:brightness-110 w-full transition-all" onclick="addToCart('Veg Manchow Soup', 265, this)">Add To Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dish 8: Seafood Biryani -->
+                <div class="dish-node" style="--angle: 315deg;">
+                    <div class="dish-node-inner">
+                        <div class="static-counter">
+                            <div class="dish-node-card menu-item" data-name="seafood biryani">
+                                <span class="special-badge">CHEF'S SPECIAL</span>
+                                <div class="food-img-container w-20 h-20 rounded-full overflow-hidden border-2 border-primary/30 mx-auto mb-2 transition-transform duration-500">
+                                    <img alt="Seafood Biryani" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80"/>
+                                </div>
+                                <h4 class="dish-title font-headline-sm text-[13px] text-on-surface italic leading-tight">Seafood Biryani</h4>
+                                <p class="dish-category text-[8px] text-primary tracking-wider uppercase font-bold mt-0.5">Breads & Rice</p>
+                                <div class="detail-section mt-2 space-y-2">
+                                    <p class="text-[10px] text-on-surface-variant italic leading-normal">
+                                        Fragrant long-grain basmati rice layered with fresh seafood, aromatic spices, and caramelized onions, cooked under dum.
+                                    </p>
+                                    <span class="dish-price text-primary font-bold text-[13px] block">₹680</span>
+                                    <button class="shimmer-btn bg-primary text-background text-[8px] tracking-widest font-label-caps font-bold py-1.5 px-4 rounded-full uppercase hover:brightness-110 w-full transition-all" onclick="addToCart('Seafood Biryani', 680, this)">Add To Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Scroll Down Transition Indicator -->
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer z-30 transition-opacity hover:opacity-100 opacity-70" id="scroll-to-menu">
+            <span class="text-[9px] md:text-[10px] tracking-[0.4em] text-primary uppercase font-label-caps">Explore Full Menu</span>
+            <span class="material-symbols-outlined text-primary text-[20px] md:text-[24px] animate-bounce" data-icon="keyboard_double_arrow_down">keyboard_double_arrow_down</span>
         </div>
     </header>
 
@@ -776,6 +1346,58 @@
                 }
             });
         });
+
+        // Interactive Orbital Showcase Handlers
+        const orbitContainer = document.querySelector('.orbit-container');
+        const dishNodes = document.querySelectorAll('.dish-node-card');
+        const scrollIndicator = document.getElementById('scroll-to-menu');
+
+        // Toggle details on mobile/click
+        dishNodes.forEach(node => {
+            node.addEventListener('click', (e) => {
+                // If it's a button click, let the event bubble up to addToCart
+                if (e.target.closest('button')) {
+                    e.stopPropagation();
+                    return;
+                }
+                
+                // Toggle expanded state
+                const isExpanded = node.classList.contains('expanded');
+                
+                // Close all nodes first
+                dishNodes.forEach(n => n.classList.remove('expanded'));
+                if (orbitContainer) orbitContainer.classList.remove('rotation-paused');
+                
+                if (!isExpanded) {
+                    node.classList.add('expanded');
+                    if (orbitContainer) orbitContainer.classList.add('rotation-paused');
+                }
+                
+                e.stopPropagation();
+            });
+        });
+
+        // Close expanded cards when clicking anywhere outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dish-node-card')) {
+                dishNodes.forEach(n => n.classList.remove('expanded'));
+                if (orbitContainer) orbitContainer.classList.remove('rotation-paused');
+            }
+        });
+
+        // Scroll to menu categories transition
+        if (scrollIndicator) {
+            scrollIndicator.addEventListener('click', () => {
+                const target = document.querySelector('.sticky') || document.getElementById('combos');
+                if (target) {
+                    const offset = window.innerWidth < 768 ? 130 : 160;
+                    window.scrollTo({
+                        top: target.offsetTop - offset,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        }
     </script>
 </body>
 </html>
