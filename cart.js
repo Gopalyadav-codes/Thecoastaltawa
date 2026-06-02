@@ -1131,6 +1131,8 @@ function initCustomCursor() {
     let isHovering = false;
     let cursorInitialized = false;
     let floatTimer = 0;
+    let plateVx = 0;
+    let plateVy = 0;
 
     window.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
@@ -1177,25 +1179,37 @@ function initCustomCursor() {
             
             const targetPlateX = mouseX - 35 + floatX;
             const targetPlateY = mouseY + 85 + floatY;
-
             const dx = targetPlateX - plateX;
             const dy = targetPlateY - plateY;
 
-            // Dynamic physics: Easing slows down at higher speeds/distances to simulate weight/inertia
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            const currentEasing = Math.max(0.03, 0.08 - dist * 0.00015);
+            // Spring physics with momentum & natural settling
+            const springTension = 0.07;
+            const damping = 0.84;
 
-            plateX += dx * currentEasing;
-            plateY += dy * currentEasing;
+            const ax = dx * springTension;
+            const ay = dy * springTension;
 
-            // Enforce constraints:
-            // Minimum offset is strictly preserved (25px left, 70px below) to prevent overlap.
-            // Maximum offset is expanded (160px left, 220px below) to allow natural speed-based trailing separation.
-            plateX = Math.max(forkX - 160, Math.min(plateX, forkX - 25));
-            plateY = Math.min(forkY + 220, Math.max(plateY, forkY + 70));
+            plateVx = (plateVx + ax) * damping;
+            plateVy = (plateVy + ay) * damping;
 
-            // Subtle rotation leaning into direction of movement
-            const targetAngle = Math.max(-12, Math.min(12, dx * 0.25));
+            plateX += plateVx;
+            plateY += plateVy;
+
+            // Enforce safety constraints to keep the follower within range, reset velocity on boundary collision
+            const clampedX = Math.max(forkX - 180, Math.min(plateX, forkX + 120));
+            const clampedY = Math.max(forkY - 60, Math.min(plateY, forkY + 240));
+
+            if (clampedX !== plateX) {
+                plateX = clampedX;
+                plateVx = 0;
+            }
+            if (clampedY !== plateY) {
+                plateY = clampedY;
+                plateVy = 0;
+            }
+
+            // Subtle rotation leaning dynamically into the direction of actual physical velocity
+            const targetAngle = Math.max(-15, Math.min(15, plateVx * 1.5));
             plateAngle += (targetAngle - plateAngle) * 0.08;
 
             // Scale factor for hovers
